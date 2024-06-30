@@ -3,12 +3,11 @@ import SwiftUI
 struct ConfigurationView: View {
     @ObservedObject var audioRecorder: AudioRecorder
     @Binding var selectedSounds: [String: [URL]]
-    let questions = ["Question 1", "Question 2", "Question 3"]
-
+    
     var body: some View {
         VStack {
             List {
-                ForEach(questions, id: \.self) { question in
+                ForEach(Array(audioRecorder.recordingsByQuestion.keys), id: \.self) { question in
                     Section(header: Text(question)) {
                         ForEach(audioRecorder.recordingsByQuestion[question] ?? [], id: \.id) { recording in
                             HStack {
@@ -21,23 +20,23 @@ struct ConfigurationView: View {
                             }
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                if var sounds = selectedSounds[question] {
-                                    if let index = sounds.firstIndex(of: recording.fileURL) {
-                                        sounds.remove(at: index)
-                                    } else {
-                                        sounds.append(recording.fileURL)
-                                    }
-                                    selectedSounds[question] = sounds
-                                } else {
-                                    selectedSounds[question] = [recording.fileURL]
-                                }
-                                audioRecorder.saveConfiguration(selectedSounds)
+                                toggleSelection(of: recording, for: question)
                             }
                         }
                     }
                 }
+                .onDelete(perform: deleteQuestion)
             }
             .navigationTitle("Configure Questions")
+
+            Button(action: resetConfiguration) {
+                Text("Reset Configuration")
+                    .padding()
+                    .background(Color.red)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .padding()
         }
         .onAppear {
             selectedSounds = audioRecorder.loadConfiguration()
@@ -48,5 +47,33 @@ struct ConfigurationView: View {
         return fileName
             .replacingOccurrences(of: "_", with: " ")
             .replacingOccurrences(of: ".m4a", with: "")
+    }
+
+    func deleteQuestion(at offsets: IndexSet) {
+        for index in offsets {
+            let question = Array(audioRecorder.recordingsByQuestion.keys)[index]
+            audioRecorder.recordingsByQuestion.removeValue(forKey: question)
+            selectedSounds.removeValue(forKey: question)
+        }
+        audioRecorder.saveConfiguration(selectedSounds)
+    }
+
+    func toggleSelection(of recording: Recording, for question: String) {
+        if var sounds = selectedSounds[question] {
+            if let index = sounds.firstIndex(of: recording.fileURL) {
+                sounds.remove(at: index)
+            } else {
+                sounds.append(recording.fileURL)
+            }
+            selectedSounds[question] = sounds
+        } else {
+            selectedSounds[question] = [recording.fileURL]
+        }
+        audioRecorder.saveConfiguration(selectedSounds)
+    }
+
+    func resetConfiguration() {
+        selectedSounds.removeAll()
+        audioRecorder.saveConfiguration(selectedSounds)
     }
 }

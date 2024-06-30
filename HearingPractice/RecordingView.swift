@@ -2,22 +2,48 @@ import SwiftUI
 
 struct RecordingView: View {
     @ObservedObject var audioRecorder: AudioRecorder
-    @State private var selectedQuestion = "Question 1"
-    let questions = ["Question 1", "Question 2", "Question 3"]
-    
+    @State private var newQuestion = ""
+    @State private var selectedQuestion: String?
+
     var body: some View {
         VStack {
-            Picker("Select Question", selection: $selectedQuestion) {
-                ForEach(questions, id: \.self) { question in
-                    Text(question).tag(question)
+            HStack {
+                TextField("Enter new question", text: $newQuestion)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+
+                Button(action: addQuestion) {
+                    Text("Add Question")
+                        .padding()
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
+                .padding()
             }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding()
-            
-            if audioRecorder.isRecording {
+
+            List {
+                ForEach(Array(audioRecorder.recordingsByQuestion.keys), id: \.self) { question in
+                    HStack {
+                        Text(question)
+                        Spacer()
+                        Button(action: {
+                            selectedQuestion = question
+                        }) {
+                            Text("Configure")
+                                .padding(5)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(5)
+                        }
+                    }
+                }
+                .onDelete(perform: deleteQuestion)
+            }
+
+            if audioRecorder.isRecording, let question = selectedQuestion {
                 Button(action: {
-                    self.audioRecorder.stopRecording(for: selectedQuestion)
+                    self.audioRecorder.stopRecording(for: question)
                 }) {
                     Text("Stop Recording")
                         .padding()
@@ -25,24 +51,9 @@ struct RecordingView: View {
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
-            } else {
-                Button(action: {
-                    self.audioRecorder.startRecording(for: selectedQuestion)
-                }) {
-                    Text("Start Recording")
-                        .padding()
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
+                .padding()
             }
-            
-            List {
-                ForEach(audioRecorder.recordingsByQuestion[selectedQuestion] ?? [], id: \.id) { recording in
-                    Text(formattedFileName(from: recording.fileURL.lastPathComponent))
-                }
-            }
-            
+
             Button(action: {
                 self.audioRecorder.deleteAllRecordings()
             }) {
@@ -53,13 +64,30 @@ struct RecordingView: View {
                     .cornerRadius(10)
             }
             .padding(.top, 20)
+
+            Spacer()
         }
         .navigationTitle("Recordings")
+        .sheet(item: $selectedQuestion) { question in
+            QuestionRecordingView(audioRecorder: audioRecorder, question: question)
+        }
     }
 
-    func formattedFileName(from fileName: String) -> String {
-        return fileName
-            .replacingOccurrences(of: "_", with: " ")
-            .replacingOccurrences(of: ".m4a", with: "")
+    func addQuestion() {
+        guard !newQuestion.isEmpty else { return }
+        audioRecorder.recordingsByQuestion[newQuestion] = []
+        newQuestion = ""
     }
+
+    func deleteQuestion(at offsets: IndexSet) {
+        for index in offsets {
+            let question = Array(audioRecorder.recordingsByQuestion.keys)[index]
+            audioRecorder.recordingsByQuestion.removeValue(forKey: question)
+            // Optionally delete associated recordings from storage if necessary
+        }
+    }
+}
+
+extension String: Identifiable {
+    public var id: String { self }
 }
