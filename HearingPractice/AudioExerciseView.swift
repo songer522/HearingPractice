@@ -9,27 +9,20 @@ struct AudioExerciseView: View {
     @State private var isCorrect: Bool? = nil
     @State private var showSummary: Bool = false
     @State private var feedbackColor: Color = Color.white
-    @State private var correctAnswers: Int = 0
+    @State private var correctAnswers: Int = 0 // Track correct answers
     @ObservedObject var audioPlayer = AudioPlayer()
     @Environment(\.presentationMode) var presentationMode
     @Binding var navigateToHome: Bool
 
     var body: some View {
         VStack {
-            Text(questions[currentQuestionIndex])
+            Text("Question \(currentQuestionIndex + 1) / \(questions.count)")
                 .font(.title)
                 .padding()
                 .foregroundColor(.primary)
-            
+
             if let sounds = selectedSounds[questions[currentQuestionIndex]], !sounds.isEmpty {
-                Text("Playing: \(formattedFileName(from: selectedSound?.lastPathComponent ?? "Unknown"))")
-                    .font(.headline)
-                    .padding()
-                    .foregroundColor(.primary)
-                    .onAppear {
-                        self.selectRandomSound()
-                        self.playCurrentSound()
-                    }
+                // Removed the label showing the currently playing file name
                 
                 Button(action: {
                     self.playCurrentSound()
@@ -41,7 +34,11 @@ struct AudioExerciseView: View {
                         .cornerRadius(10)
                 }
                 .padding(.bottom, 20)
-                
+                .onAppear {
+                    self.selectRandomSound()
+                    self.playCurrentSound()
+                }
+
                 VStack {
                     ForEach(sounds, id: \.self) { sound in
                         Button(action: {
@@ -59,7 +56,7 @@ struct AudioExerciseView: View {
                     }
                 }
                 .padding()
-                
+
                 if let isCorrect = isCorrect {
                     Text(isCorrect ? "Correct!" : "Try Again!")
                         .font(.title2)
@@ -73,9 +70,9 @@ struct AudioExerciseView: View {
                     .padding()
                     .foregroundColor(.primary)
             }
-            
+
             Spacer()
-            
+
             Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }) {
@@ -98,28 +95,32 @@ struct AudioExerciseView: View {
                 }
         }
     }
-    
+
     func selectRandomSound() {
         if let sounds = selectedSounds[questions[currentQuestionIndex]], !sounds.isEmpty {
             selectedSound = sounds.randomElement()
+            print("Selected sound: \(selectedSound?.lastPathComponent ?? "None")")
         }
     }
-    
+
     func playCurrentSound() {
         if let sound = selectedSound {
+            print("Playing sound: \(sound.lastPathComponent)")
             audioPlayer.playSound(soundURL: sound)
         }
     }
-    
+
     func checkAnswer(_ answer: URL) {
         if let sound = selectedSound {
             withAnimation {
                 isCorrect = (answer == sound)
                 feedbackColor = isCorrect == true ? Color.green : Color.red
+                print("Answer checked: \(isCorrect == true ? "Correct" : "Incorrect")")
             }
-            
+
             if isCorrect == true {
-                correctAnswers += 1
+                correctAnswers += 1 // Increment correct answers if the answer is correct
+                print("Correct Answers incremented: \(correctAnswers)")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.nextQuestionOrSummary()
                 }
@@ -132,19 +133,20 @@ struct AudioExerciseView: View {
             }
         }
     }
-    
+
     func playSoundRepeatedly(soundURL: URL, times: Int, completion: @escaping () -> Void) {
         guard times > 0 else {
             completion()
             return
         }
 
+        print("Repeating sound: \(soundURL.lastPathComponent), times left: \(times)")
         audioPlayer.playSound(soundURL: soundURL)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.playSoundRepeatedly(soundURL: soundURL, times: times - 1, completion: completion)
         }
     }
-    
+
     func nextQuestionOrSummary() {
         if currentQuestionIndex < questions.count - 1 {
             currentQuestionIndex += 1
@@ -156,10 +158,10 @@ struct AudioExerciseView: View {
             showSummary = true
         }
     }
-    
+
     func resetExercise() {
         currentQuestionIndex = 0
-        correctAnswers = 0
+        correctAnswers = 0 // Reset correct answers
         selectRandomSound()
         isCorrect = nil
         feedbackColor = Color.white
