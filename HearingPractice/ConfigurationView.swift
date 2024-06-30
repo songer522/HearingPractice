@@ -1,0 +1,49 @@
+//
+//  ConfigurationView.swift
+//  HearingPractice
+//
+//  Created by Yang Song on 6/29/24.
+//
+
+import SwiftUI
+
+struct ConfigurationView: View {
+    @ObservedObject var audioRecorder: AudioRecorder
+    @Binding var selectedSounds: [String: [URL]]
+    let questions = ["Question 1", "Question 2", "Question 3"]
+    
+    var body: some View {
+        VStack {
+            List {
+                ForEach(questions, id: \.self) { question in
+                    Section(header: Text(question)) {
+                        ForEach(audioRecorder.recordingsByQuestion[question] ?? [], id: \.id) { recording in
+                            HStack {
+                                Text(recording.fileURL.lastPathComponent)
+                                Spacer()
+                                if selectedSounds[question]?.contains(recording.fileURL) == true {
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                if var sounds = selectedSounds[question] {
+                                    if let index = sounds.firstIndex(of: recording.fileURL) {
+                                        sounds.remove(at: index)
+                                    } else {
+                                        sounds.append(recording.fileURL)
+                                    }
+                                    selectedSounds[question] = sounds
+                                } else {
+                                    selectedSounds[question] = [recording.fileURL]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Configure Questions")
+        }
+    }
+}
