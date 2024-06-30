@@ -1,0 +1,628 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FC4393DC2C31056600860D99 /* HearingPracticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393DB2C31056600860D99 /* HearingPracticeApp.swift */; };
+		FC4393DE2C31056600860D99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393DD2C31056600860D99 /* ContentView.swift */; };
+		FC4393E02C31056600860D99 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393DF2C31056600860D99 /* Item.swift */; };
+		FC4393E22C31056700860D99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC4393E12C31056700860D99 /* Assets.xcassets */; };
+		FC4393E62C31056700860D99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC4393E52C31056700860D99 /* Preview Assets.xcassets */; };
+		FC4393F02C31056700860D99 /* HearingPracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393EF2C31056700860D99 /* HearingPracticeTests.swift */; };
+		FC4393FA2C31056700860D99 /* HearingPracticeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393F92C31056700860D99 /* HearingPracticeUITests.swift */; };
+		FC4393FC2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393FB2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FC4393EC2C31056700860D99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC4393D02C31056600860D99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC4393D72C31056600860D99;
+			remoteInfo = HearingPractice;
+		};
+		FC4393F62C31056700860D99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC4393D02C31056600860D99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC4393D72C31056600860D99;
+			remoteInfo = HearingPractice;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FC4393D82C31056600860D99 /* HearingPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HearingPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC4393DB2C31056600860D99 /* HearingPracticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearingPracticeApp.swift; sourceTree = "<group>"; };
+		FC4393DD2C31056600860D99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FC4393DF2C31056600860D99 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		FC4393E12C31056700860D99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FC4393E32C31056700860D99 /* HearingPractice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HearingPractice.entitlements; sourceTree = "<group>"; };
+		FC4393E52C31056700860D99 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FC4393EB2C31056700860D99 /* HearingPracticeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HearingPracticeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC4393EF2C31056700860D99 /* HearingPracticeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearingPracticeTests.swift; sourceTree = "<group>"; };
+		FC4393F52C31056700860D99 /* HearingPracticeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HearingPracticeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC4393F92C31056700860D99 /* HearingPracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearingPracticeUITests.swift; sourceTree = "<group>"; };
+		FC4393FB2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearingPracticeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FC4393D52C31056600860D99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4393E82C31056700860D99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4393F22C31056700860D99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FC4393CF2C31056600860D99 = {
+			isa = PBXGroup;
+			children = (
+				FC4393DA2C31056600860D99 /* HearingPractice */,
+				FC4393EE2C31056700860D99 /* HearingPracticeTests */,
+				FC4393F82C31056700860D99 /* HearingPracticeUITests */,
+				FC4393D92C31056600860D99 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FC4393D92C31056600860D99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC4393D82C31056600860D99 /* HearingPractice.app */,
+				FC4393EB2C31056700860D99 /* HearingPracticeTests.xctest */,
+				FC4393F52C31056700860D99 /* HearingPracticeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FC4393DA2C31056600860D99 /* HearingPractice */ = {
+			isa = PBXGroup;
+			children = (
+				FC4393DB2C31056600860D99 /* HearingPracticeApp.swift */,
+				FC4393DD2C31056600860D99 /* ContentView.swift */,
+				FC4393DF2C31056600860D99 /* Item.swift */,
+				FC4393E12C31056700860D99 /* Assets.xcassets */,
+				FC4393E32C31056700860D99 /* HearingPractice.entitlements */,
+				FC4393E42C31056700860D99 /* Preview Content */,
+			);
+			path = HearingPractice;
+			sourceTree = "<group>";
+		};
+		FC4393E42C31056700860D99 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FC4393E52C31056700860D99 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FC4393EE2C31056700860D99 /* HearingPracticeTests */ = {
+			isa = PBXGroup;
+			children = (
+				FC4393EF2C31056700860D99 /* HearingPracticeTests.swift */,
+			);
+			path = HearingPracticeTests;
+			sourceTree = "<group>";
+		};
+		FC4393F82C31056700860D99 /* HearingPracticeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FC4393F92C31056700860D99 /* HearingPracticeUITests.swift */,
+				FC4393FB2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift */,
+			);
+			path = HearingPracticeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FC4393D72C31056600860D99 /* HearingPractice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC4393FF2C31056700860D99 /* Build configuration list for PBXNativeTarget "HearingPractice" */;
+			buildPhases = (
+				FC4393D42C31056600860D99 /* Sources */,
+				FC4393D52C31056600860D99 /* Frameworks */,
+				FC4393D62C31056600860D99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HearingPractice;
+			productName = HearingPractice;
+			productReference = FC4393D82C31056600860D99 /* HearingPractice.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FC4393EA2C31056700860D99 /* HearingPracticeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC4394022C31056700860D99 /* Build configuration list for PBXNativeTarget "HearingPracticeTests" */;
+			buildPhases = (
+				FC4393E72C31056700860D99 /* Sources */,
+				FC4393E82C31056700860D99 /* Frameworks */,
+				FC4393E92C31056700860D99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC4393ED2C31056700860D99 /* PBXTargetDependency */,
+			);
+			name = HearingPracticeTests;
+			productName = HearingPracticeTests;
+			productReference = FC4393EB2C31056700860D99 /* HearingPracticeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FC4393F42C31056700860D99 /* HearingPracticeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC4394052C31056700860D99 /* Build configuration list for PBXNativeTarget "HearingPracticeUITests" */;
+			buildPhases = (
+				FC4393F12C31056700860D99 /* Sources */,
+				FC4393F22C31056700860D99 /* Frameworks */,
+				FC4393F32C31056700860D99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC4393F72C31056700860D99 /* PBXTargetDependency */,
+			);
+			name = HearingPracticeUITests;
+			productName = HearingPracticeUITests;
+			productReference = FC4393F52C31056700860D99 /* HearingPracticeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FC4393D02C31056600860D99 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					FC4393D72C31056600860D99 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					FC4393EA2C31056700860D99 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = FC4393D72C31056600860D99;
+					};
+					FC4393F42C31056700860D99 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = FC4393D72C31056600860D99;
+					};
+				};
+			};
+			buildConfigurationList = FC4393D32C31056600860D99 /* Build configuration list for PBXProject "HearingPractice" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FC4393CF2C31056600860D99;
+			productRefGroup = FC4393D92C31056600860D99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FC4393D72C31056600860D99 /* HearingPractice */,
+				FC4393EA2C31056700860D99 /* HearingPracticeTests */,
+				FC4393F42C31056700860D99 /* HearingPracticeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FC4393D62C31056600860D99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC4393E62C31056700860D99 /* Preview Assets.xcassets in Resources */,
+				FC4393E22C31056700860D99 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4393E92C31056700860D99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4393F32C31056700860D99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FC4393D42C31056600860D99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC4393DE2C31056600860D99 /* ContentView.swift in Sources */,
+				FC4393E02C31056600860D99 /* Item.swift in Sources */,
+				FC4393DC2C31056600860D99 /* HearingPracticeApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4393E72C31056700860D99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC4393F02C31056700860D99 /* HearingPracticeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4393F12C31056700860D99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC4393FC2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift in Sources */,
+				FC4393FA2C31056700860D99 /* HearingPracticeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FC4393ED2C31056700860D99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC4393D72C31056600860D99 /* HearingPractice */;
+			targetProxy = FC4393EC2C31056700860D99 /* PBXContainerItemProxy */;
+		};
+		FC4393F72C31056700860D99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC4393D72C31056600860D99 /* HearingPractice */;
+			targetProxy = FC4393F62C31056700860D99 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FC4393FD2C31056700860D99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FC4393FE2C31056700860D99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		FC4394002C31056700860D99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HearingPractice/HearingPractice.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HearingPractice/Preview Content\"";
+				DEVELOPMENT_TEAM = 4UXP3NANFN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangsong.HearingPractice;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		FC4394012C31056700860D99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HearingPractice/HearingPractice.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"HearingPractice/Preview Content\"";
+				DEVELOPMENT_TEAM = 4UXP3NANFN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangsong.HearingPractice;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		FC4394032C31056700860D99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4UXP3NANFN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangsong.HearingPracticeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HearingPractice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HearingPractice";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		FC4394042C31056700860D99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4UXP3NANFN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangsong.HearingPracticeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HearingPractice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HearingPractice";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		FC4394062C31056700860D99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4UXP3NANFN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangsong.HearingPracticeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = HearingPractice;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		FC4394072C31056700860D99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4UXP3NANFN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangsong.HearingPracticeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = HearingPractice;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FC4393D32C31056600860D99 /* Build configuration list for PBXProject "HearingPractice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC4393FD2C31056700860D99 /* Debug */,
+				FC4393FE2C31056700860D99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC4393FF2C31056700860D99 /* Build configuration list for PBXNativeTarget "HearingPractice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC4394002C31056700860D99 /* Debug */,
+				FC4394012C31056700860D99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC4394022C31056700860D99 /* Build configuration list for PBXNativeTarget "HearingPracticeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC4394032C31056700860D99 /* Debug */,
+				FC4394042C31056700860D99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC4394052C31056700860D99 /* Build configuration list for PBXNativeTarget "HearingPracticeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC4394062C31056700860D99 /* Debug */,
+				FC4394072C31056700860D99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FC4393D02C31056600860D99 /* Project object */;
+}
