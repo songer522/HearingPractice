@@ -7,16 +7,16 @@
 
 import SwiftUI
 import SwiftData
-import AVFoundation
 
 struct ContentView: View {
     @State private var selectedSounds = [String: [URL]]()
     @ObservedObject var audioRecorder = AudioRecorder()
-    
+    @State private var navigateToHome = false
+
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: AudioExerciseView(selectedSounds: $selectedSounds, questions: Array(selectedSounds.keys))) {
+                NavigationLink(destination: AudioExerciseView(selectedSounds: $selectedSounds, questions: Array(selectedSounds.keys), navigateToHome: $navigateToHome), isActive: $navigateToHome) {
                     Text("Start Audio Exercises")
                         .font(.largeTitle)
                         .padding()
@@ -24,7 +24,8 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
-                
+                .padding(.top, 20)
+
                 NavigationLink(destination: RecordingView(audioRecorder: audioRecorder)) {
                     Text("Record Sounds")
                         .font(.title)
@@ -45,20 +46,15 @@ struct ContentView: View {
                 }
                 .padding(.top, 20)
                 
-                List {
-                    ForEach(selectedSounds.keys.sorted(), id: \.self) { question in
-                        Section(header: Text(question)) {
-                            ForEach(selectedSounds[question] ?? [], id: \.self) { sound in
-                                Text(sound.lastPathComponent)
-                            }
-                        }
-                    }
-                }
-                .navigationTitle("Home")
+                Spacer()
             }
+            .navigationTitle("Home")
+            .padding()
         }
     }
 }
+
+
 
 #Preview {
     ContentView()

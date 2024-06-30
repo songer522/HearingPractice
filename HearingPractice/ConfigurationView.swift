@@ -1,17 +1,10 @@
-//
-//  ConfigurationView.swift
-//  HearingPractice
-//
-//  Created by Yang Song on 6/29/24.
-//
-
 import SwiftUI
 
 struct ConfigurationView: View {
     @ObservedObject var audioRecorder: AudioRecorder
     @Binding var selectedSounds: [String: [URL]]
     let questions = ["Question 1", "Question 2", "Question 3"]
-    
+
     var body: some View {
         VStack {
             List {
@@ -38,12 +31,16 @@ struct ConfigurationView: View {
                                 } else {
                                     selectedSounds[question] = [recording.fileURL]
                                 }
+                                audioRecorder.saveConfiguration(selectedSounds)
                             }
                         }
                     }
                 }
             }
             .navigationTitle("Configure Questions")
+        }
+        .onAppear {
+            selectedSounds = audioRecorder.loadConfiguration()
         }
     }
 
@@ -53,4 +50,3 @@ struct ConfigurationView: View {
             .replacingOccurrences(of: ".m4a", with: "")
     }
 }
-

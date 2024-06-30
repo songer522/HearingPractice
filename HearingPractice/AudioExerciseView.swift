@@ -1,10 +1,3 @@
-//
-//  AudioExerciseView.swift
-//  HearingPractice
-//
-//  Created by Yang Song on 6/30/24.
-//
-
 import SwiftUI
 import AVFoundation
 
@@ -16,9 +9,11 @@ struct AudioExerciseView: View {
     @State private var isCorrect: Bool? = nil
     @State private var showSummary: Bool = false
     @State private var feedbackColor: Color = Color.white
+    @State private var correctAnswers: Int = 0
     @ObservedObject var audioPlayer = AudioPlayer()
-    @Environment(\.presentationMode) var presentationMode // Add this line to use presentationMode
-    
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var navigateToHome: Bool
+
     var body: some View {
         VStack {
             Text(questions[currentQuestionIndex])
@@ -79,10 +74,10 @@ struct AudioExerciseView: View {
                     .foregroundColor(.primary)
             }
             
-            Spacer() // Pushes the Exit button to the bottom
+            Spacer()
             
             Button(action: {
-                self.presentationMode.wrappedValue.dismiss() // Dismiss the view to go back to the home screen
+                self.presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Exit to Home Screen")
                     .padding()
@@ -97,7 +92,7 @@ struct AudioExerciseView: View {
         .navigationTitle("Audio Exercise")
         .padding()
         .fullScreenCover(isPresented: $showSummary) {
-            SummaryView()
+            SummaryView(correctAnswers: correctAnswers, totalQuestions: questions.count, onStartOver: resetExercise, navigateToHome: $navigateToHome)
                 .onDisappear {
                     resetExercise()
                 }
@@ -123,10 +118,30 @@ struct AudioExerciseView: View {
                 feedbackColor = isCorrect == true ? Color.green : Color.red
             }
             
-            audioPlayer.playSound(soundURL: answer)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.nextQuestionOrSummary()
+            if isCorrect == true {
+                correctAnswers += 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.nextQuestionOrSummary()
+                }
+            } else {
+                playSoundRepeatedly(soundURL: sound, times: 3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.nextQuestionOrSummary()
+                    }
+                }
             }
+        }
+    }
+    
+    func playSoundRepeatedly(soundURL: URL, times: Int, completion: @escaping () -> Void) {
+        guard times > 0 else {
+            completion()
+            return
+        }
+
+        audioPlayer.playSound(soundURL: soundURL)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.playSoundRepeatedly(soundURL: soundURL, times: times - 1, completion: completion)
         }
     }
     
@@ -144,6 +159,7 @@ struct AudioExerciseView: View {
     
     func resetExercise() {
         currentQuestionIndex = 0
+        correctAnswers = 0
         selectRandomSound()
         isCorrect = nil
         feedbackColor = Color.white
