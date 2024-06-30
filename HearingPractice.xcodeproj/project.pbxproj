@@ -20,6 +20,7 @@
 		FC4394112C310D2100860D99 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4394102C310D1A00860D99 /* SettingsView.swift */; };
 		FC4394132C310F6000860D99 /* AVRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4394122C310F5B00860D99 /* AVRecorder.swift */; };
 		FC4394152C3112A600860D99 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4394142C31129D00860D99 /* ConfigurationView.swift */; };
+		FC4394172C3123C500860D99 /* AudioExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4394162C3123BB00860D99 /* AudioExerciseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		FC4394102C310D1A00860D99 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FC4394122C310F5B00860D99 /* AVRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVRecorder.swift; sourceTree = "<group>"; };
 		FC4394142C31129D00860D99 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
+		FC4394162C3123BB00860D99 /* AudioExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioExerciseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				FC4393DB2C31056600860D99 /* HearingPracticeApp.swift */,
 				FC4393DD2C31056600860D99 /* ContentView.swift */,
 				FC43940A2C3109BF00860D99 /* AVPlayer.swift */,
+				FC4394162C3123BB00860D99 /* AudioExerciseView.swift */,
 				FC43940E2C310B6B00860D99 /* SummaryView.swift */,
 				FC43940C2C310A9900860D99 /* Item.swift */,
 				FC4394102C310D1A00860D99 /* SettingsView.swift */,
@@ -281,6 +284,7 @@
 				FC4393DE2C31056600860D99 /* ContentView.swift in Sources */,
 				FC4394132C310F6000860D99 /* AVRecorder.swift in Sources */,
 				FC43940F2C310B7300860D99 /* SummaryView.swift in Sources */,
+				FC4394172C3123C500860D99 /* AudioExerciseView.swift in Sources */,
 				FC4394112C310D2100860D99 /* SettingsView.swift in Sources */,
 				FC4394152C3112A600860D99 /* ConfigurationView.swift in Sources */,
 				FC4393DC2C31056600860D99 /* HearingPracticeApp.swift in Sources */,

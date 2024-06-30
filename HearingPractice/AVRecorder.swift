@@ -8,34 +8,39 @@ import SwiftUI
 import AVFoundation
 import Speech
 
+struct Recording: Identifiable {
+    let id = UUID()
+    let fileURL: URL
+}
+
 class AudioRecorder: ObservableObject {
     var audioRecorder: AVAudioRecorder?
-       @Published var isRecording = false
-       @Published var recordingsByQuestion = [String: [Recording]]()
-       
-       init() {
-           requestSpeechRecognitionPermission()
-           loadAllRecordings()
-       }
-
-       func requestSpeechRecognitionPermission() {
-           SFSpeechRecognizer.requestAuthorization { authStatus in
-               DispatchQueue.main.async {
-                   switch authStatus {
-                   case .authorized:
-                       print("Speech recognition authorized")
-                   case .denied, .restricted, .notDetermined:
-                       print("Speech recognition not authorized")
-                   @unknown default:
-                       print("Unknown speech recognition status")
-                   }
-               }
-           }
-       }
+    @Published var isRecording = false
+    @Published var recordingsByQuestion = [String: [Recording]]()
     
+    init() {
+        requestSpeechRecognitionPermission()
+        loadAllRecordings()
+    }
+
+    func requestSpeechRecognitionPermission() {
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            DispatchQueue.main.async {
+                switch authStatus {
+                case .authorized:
+                    print("Speech recognition authorized")
+                case .denied, .restricted, .notDetermined:
+                    print("Speech recognition not authorized")
+                @unknown default:
+                    print("Unknown speech recognition status")
+                }
+            }
+        }
+    }
+
     func startRecording(for question: String) {
         let recordingName = UUID().uuidString + ".m4a"
-        let recordingURL = getDocumentsDirectory().appendingPathComponent(recordingName)
+        let recordingURL = getDocumentsDirectory().appendingPathComponent(question).appendingPathComponent(recordingName)
         
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
@@ -45,6 +50,7 @@ class AudioRecorder: ObservableObject {
         ]
         
         do {
+            try FileManager.default.createDirectory(at: recordingURL.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
             audioRecorder = try AVAudioRecorder(url: recordingURL, settings: settings)
             audioRecorder?.record()
             isRecording = true
@@ -54,46 +60,67 @@ class AudioRecorder: ObservableObject {
     }
     
     func stopRecording(for question: String) {
-            audioRecorder?.stop()
-            isRecording = false
+        audioRecorder?.stop()
+        isRecording = false
 
-            guard let url = audioRecorder?.url else { return }
-            
-            transcribeAudio(url: url) { [weak self] transcribedText in
-                guard let self = self, let transcribedText = transcribedText else { return }
-                self.renameRecording(url: url, newName: transcribedText)
-                self.loadRecordings(for: question)
-            }
+        guard let url = audioRecorder?.url else { return }
+        
+        transcribeAudio(url: url) { [weak self] transcribedText in
+            guard let self = self, let transcribedText = transcribedText else { return }
+            self.renameRecording(url: url, newName: transcribedText, for: question)
+            self.loadRecordings(for: question)
         }
+    }
 
-        func renameRecording(url: URL, newName: String) {
-            let newFileName = newName.replacingOccurrences(of: " ", with: "_") + ".m4a"
-            let newURL = getDocumentsDirectory().appendingPathComponent(newFileName)
+    func transcribeAudio(url: URL, completion: @escaping (String?) -> Void) {
+        let recognizer = SFSpeechRecognizer()
+        let request = SFSpeechURLRecognitionRequest(url: url)
 
-            do {
-                try FileManager.default.moveItem(at: url, to: newURL)
-            } catch {
-                print("Could not rename file: \(error.localizedDescription)")
+        recognizer?.recognitionTask(with: request) { result, error in
+            guard let result = result, result.isFinal else {
+                completion(nil)
+                return
             }
+            completion(result.bestTranscription.formattedString)
         }
-    
+    }
+
+    func renameRecording(url: URL, newName: String, for question: String) {
+        let newFileName = newName.replacingOccurrences(of: " ", with: "_") + ".m4a"
+        let newURL = getDocumentsDirectory().appendingPathComponent(question).appendingPathComponent(newFileName)
+
+        do {
+            try FileManager.default.moveItem(at: url, to: newURL)
+            var recordings = recordingsByQuestion[question] ?? []
+            recordings.append(Recording(fileURL: newURL))
+            recordingsByQuestion[question] = recordings
+        } catch {
+            print("Could not rename file: \(error.localizedDescription)")
+        }
+    }
+
     func getDocumentsDirectory() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
-    
+
     func loadAllRecordings() {
         recordingsByQuestion.removeAll()
         let documentsDirectory = getDocumentsDirectory()
         do {
-            let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil)
-            for url in fileURLs {
-                if url.pathExtension == "m4a" {
-                    let recording = Recording(fileURL: url)
-                    let question = "Unsorted" // Or derive this from the file name if needed
-                    if recordingsByQuestion[question] != nil {
-                        recordingsByQuestion[question]?.append(recording)
-                    } else {
-                        recordingsByQuestion[question] = [recording]
+            let questionDirectories = try FileManager.default.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
+            for questionDirectory in questionDirectories {
+                if questionDirectory.hasDirectoryPath {
+                    let question = questionDirectory.lastPathComponent
+                    let fileURLs = try FileManager.default.contentsOfDirectory(at: questionDirectory, includingPropertiesForKeys: nil)
+                    for url in fileURLs {
+                        if url.pathExtension == "m4a" {
+                            let recording = Recording(fileURL: url)
+                            if recordingsByQuestion[question] != nil {
+                                recordingsByQuestion[question]?.append(recording)
+                            } else {
+                                recordingsByQuestion[question] = [recording]
+                            }
+                        }
                     }
                 }
             }
@@ -103,8 +130,8 @@ class AudioRecorder: ObservableObject {
     }
     
     func loadRecordings(for question: String) {
+        let documentsDirectory = getDocumentsDirectory().appendingPathComponent(question)
         var recordings = [Recording]()
-        let documentsDirectory = getDocumentsDirectory()
         do {
             let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil)
             for url in fileURLs {
@@ -118,42 +145,23 @@ class AudioRecorder: ObservableObject {
             print("Could not load recordings: \(error.localizedDescription)")
         }
     }
-    
+
     func deleteAllRecordings() {
         let documentsDirectory = getDocumentsDirectory()
         do {
-            let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil)
-            for url in fileURLs {
-                if url.pathExtension == "m4a" {
-                    try FileManager.default.removeItem(at: url)
-                }
+            let questionDirectories = try FileManager.default.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
+            for questionDirectory in questionDirectories {
+                try FileManager.default.removeItem(at: questionDirectory)
             }
             loadAllRecordings()
         } catch {
             print("Could not delete recordings: \(error.localizedDescription)")
         }
     }
-    
-    func transcribeAudio(url: URL, completion: @escaping (String?) -> Void) {
-          let recognizer = SFSpeechRecognizer()
-          let request = SFSpeechURLRecognitionRequest(url: url)
-
-          recognizer?.recognitionTask(with: request) { result, error in
-              guard let result = result, result.isFinal else {
-                  completion(nil)
-                  return
-              }
-              completion(result.bestTranscription.formattedString)
-          }
-      }
 }
 
 
-struct Recording: Identifiable {
-    let id = UUID()
-    let fileURL: URL
-}
-
+import SwiftUI
 
 struct RecordingView: View {
     @ObservedObject var audioRecorder: AudioRecorder
@@ -194,7 +202,7 @@ struct RecordingView: View {
             
             List {
                 ForEach(audioRecorder.recordingsByQuestion[selectedQuestion] ?? [], id: \.id) { recording in
-                    Text(recording.fileURL.lastPathComponent)
+                    Text(formattedFileName(from: recording.fileURL.lastPathComponent))
                 }
             }
             
@@ -210,6 +218,12 @@ struct RecordingView: View {
             .padding(.top, 20)
         }
         .navigationTitle("Recordings")
+    }
+
+    func formattedFileName(from fileName: String) -> String {
+        return fileName
+            .replacingOccurrences(of: "_", with: " ")
+            .replacingOccurrences(of: ".m4a", with: "")
     }
 }
 

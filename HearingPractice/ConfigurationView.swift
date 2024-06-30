@@ -19,7 +19,7 @@ struct ConfigurationView: View {
                     Section(header: Text(question)) {
                         ForEach(audioRecorder.recordingsByQuestion[question] ?? [], id: \.id) { recording in
                             HStack {
-                                Text(recording.fileURL.lastPathComponent)
+                                Text(formattedFileName(from: recording.fileURL.lastPathComponent))
                                 Spacer()
                                 if selectedSounds[question]?.contains(recording.fileURL) == true {
                                     Image(systemName: "checkmark")
@@ -46,4 +46,11 @@ struct ConfigurationView: View {
             .navigationTitle("Configure Questions")
         }
     }
+
+    func formattedFileName(from fileName: String) -> String {
+        return fileName
+            .replacingOccurrences(of: "_", with: " ")
+            .replacingOccurrences(of: ".m4a", with: "")
+    }
 }
+
