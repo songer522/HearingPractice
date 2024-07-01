@@ -7,21 +7,27 @@ struct SplashScreenView: View {
 
     var body: some View {
         if isActive {
-            ContentView() // Your main content view
+            ContentView() // Replace with your main content view
         } else {
             VStack {
-                Image(systemName: "app.fill")
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .scaleEffect(size)
-                    .opacity(opacity)
-                    .onAppear {
-                        withAnimation(.easeIn(duration: 1.2)) {
-                            self.size = 1.0
-                            self.opacity = 1.0
+                if let _ = UIImage(named: "appstore") {
+                    Image("appstore") // Use the exact name of your app icon image in assets
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .scaleEffect(size)
+                        .opacity(opacity)
+                        .clipShape(Circle())
+                        .onAppear {
+                            withAnimation(.easeIn(duration: 1.2)) {
+                                self.size = 1.0
+                                self.opacity = 1.0
+                            }
                         }
-                    }
-                Text("My App")
+                } else {
+                    Text("AppIcon not found")
+                        .foregroundColor(.red)
+                }
+                Text("Alicia❤️❤️😘😘")
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.blue)

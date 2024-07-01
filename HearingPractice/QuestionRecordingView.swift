@@ -5,17 +5,10 @@ struct QuestionRecordingView: View {
     @ObservedObject var audioRecorder: AudioRecorder
     let question: String
     @State private var isRecording = false
-    @State private var showAlertType: AlertType?
+    @State private var showAlert = false
     @State private var recordingToDelete: Recording?
+    @State private var audioPlayer: AVAudioPlayer?
     @Environment(\.presentationMode) var presentationMode // To handle dismissing the view
-
-    enum AlertType: Identifiable {
-        case delete, duplicateName
-
-        var id: Int {
-            hashValue
-        }
-    }
 
     var body: some View {
         VStack {
@@ -43,13 +36,27 @@ struct QuestionRecordingView: View {
                         Text(formattedFileName(from: recording.fileURL.lastPathComponent))
                         Spacer()
                         Button(action: {
+                            self.playRecording(recording)
+                        }) {
+                            Image(systemName: "play.circle")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.blue)
+                        }
+                        .buttonStyle(BorderlessButtonStyle())
+                        .padding(.trailing, 10)
+                        Button(action: {
                             self.recordingToDelete = recording
-                            self.showAlertType = .delete
+                            self.showAlert = true
                         }) {
                             Image(systemName: "trash")
+                                .resizable()
+                                .frame(width: 30, height: 30)
                                 .foregroundColor(.red)
                         }
+                        .buttonStyle(BorderlessButtonStyle())
                     }
+                    .padding(.vertical, 5)
                 }
             }
             
@@ -71,34 +78,17 @@ struct QuestionRecordingView: View {
             .padding()
         }
         .navigationTitle(question)
-        .alert(item: $showAlertType) { alertType in
-            switch alertType {
-            case .delete:
-                return Alert(
-                    title: Text("Delete Recording"),
-                    message: Text("Are you sure you want to delete this recording?"),
-                    primaryButton: .destructive(Text("Delete")) {
-                        if let recording = recordingToDelete {
-                            deleteRecording(recording, for: question)
-                        }
-                    },
-                    secondaryButton: .cancel()
-                )
-            case .duplicateName:
-                return Alert(
-                    title: Text("Duplicate Recording Name"),
-                    message: Text(audioRecorder.duplicateNameErrorMessage),
-                    dismissButton: .default(Text("OK")) {
-                        audioRecorder.showDuplicateNameAlert = false
-                        audioRecorder.duplicateNameErrorMessage = ""
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Delete Recording"),
+                message: Text("Are you sure you want to delete this recording?"),
+                primaryButton: .destructive(Text("Delete")) {
+                    if let recording = recordingToDelete {
+                        deleteRecording(recording, for: question)
                     }
-                )
-            }
-        }
-        .onReceive(audioRecorder.$showDuplicateNameAlert) { show in
-            if show {
-                self.showAlertType = .duplicateName
-            }
+                },
+                secondaryButton: .cancel()
+            )
         }
     }
 
@@ -132,6 +122,15 @@ struct QuestionRecordingView: View {
             try FileManager.default.removeItem(at: recording.fileURL)
         } catch {
             print("Could not delete recording: \(error.localizedDescription)")
+        }
+    }
+
+    func playRecording(_ recording: Recording) {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: recording.fileURL)
+            audioPlayer?.play()
+        } catch {
+            print("Could not play recording: \(error.localizedDescription)")
         }
     }
 }
