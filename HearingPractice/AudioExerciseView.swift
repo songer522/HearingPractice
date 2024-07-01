@@ -8,10 +8,11 @@ struct AudioExerciseView: View {
     @State private var selectedSound: URL?
     @State private var isCorrect: Bool? = nil
     @State private var showSummary: Bool = false
-    @State private var feedbackColor: Color = Color.white
+    @State private var feedbackColor: Color = Color.clear
     @State private var correctAnswers: Int = 0 // Track correct answers
     @ObservedObject var audioPlayer = AudioPlayer()
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
     @Binding var navigateToHome: Bool
 
     var body: some View {
@@ -60,7 +61,7 @@ struct AudioExerciseView: View {
                 if let isCorrect = isCorrect {
                     Text(isCorrect ? "Correct!" : "Try Again!")
                         .font(.title2)
-                        .foregroundColor(isCorrect ? .green : .red)
+                        .foregroundColor(isCorrect ? feedbackColor : feedbackColor)
                         .padding()
                         .transition(.opacity)
                         .animation(.easeInOut(duration: 1.0))
@@ -114,7 +115,7 @@ struct AudioExerciseView: View {
         if let sound = selectedSound {
             withAnimation {
                 isCorrect = (answer == sound)
-                feedbackColor = isCorrect == true ? Color.green : Color.red
+                feedbackColor = (isCorrect == true ? (colorScheme == .dark ? Color.green.opacity(0.7) : Color.green) : (colorScheme == .dark ? Color.red.opacity(0.7) : Color.red))
                 print("Answer checked: \(isCorrect == true ? "Correct" : "Incorrect")")
             }
 
@@ -152,7 +153,7 @@ struct AudioExerciseView: View {
             currentQuestionIndex += 1
             selectRandomSound()
             isCorrect = nil
-            feedbackColor = Color.white
+            feedbackColor = Color.clear
             playCurrentSound()
         } else {
             showSummary = true
@@ -164,7 +165,7 @@ struct AudioExerciseView: View {
         correctAnswers = 0 // Reset correct answers
         selectRandomSound()
         isCorrect = nil
-        feedbackColor = Color.white
+        feedbackColor = Color.clear
         playCurrentSound()
     }
 
