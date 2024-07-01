@@ -17,73 +17,78 @@ struct AudioExerciseView: View {
 
     var body: some View {
         VStack {
-            Text("Question \(currentQuestionIndex + 1) / \(questions.count)")
-                .font(.title)
-                .padding()
-                .foregroundColor(.primary)
+            if questions.isEmpty {
+                Text("No questions loaded.")
+                    .font(.title)
+                    .padding()
+                    .foregroundColor(.primary)
+            } else {
+                Text("Question \(currentQuestionIndex + 1) / \(questions.count)")
+                    .font(.title)
+                    .padding()
+                    .foregroundColor(.primary)
 
-            if let sounds = selectedSounds[questions[currentQuestionIndex]], !sounds.isEmpty {
-                // Removed the label showing the currently playing file name
-                
-                Button(action: {
-                    self.playCurrentSound()
-                }) {
-                    Text("Play Again")
+                if let sounds = selectedSounds[questions[currentQuestionIndex]], !sounds.isEmpty {
+                    Button(action: {
+                        self.playCurrentSound()
+                    }) {
+                        Text("Play Again")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding(.bottom, 20)
+                    .onAppear {
+                        self.selectRandomSound()
+                        self.playCurrentSound()
+                    }
+
+                    VStack {
+                        ForEach(sounds, id: \.self) { sound in
+                            Button(action: {
+                                self.checkAnswer(sound)
+                            }) {
+                                Text(formattedFileName(from: sound.lastPathComponent))
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    .shadow(color: .gray, radius: 5, x: 0, y: 5)
+                            }
+                            .padding(.horizontal)
+                        }
+                    }
+                    .padding()
+
+                    if let isCorrect = isCorrect {
+                        Text(isCorrect ? "Correct!" : "Try Again!")
+                            .font(.title2)
+                            .foregroundColor(isCorrect ? feedbackColor : feedbackColor)
+                            .padding()
+                            .transition(.opacity)
+                            .animation(.easeInOut(duration: 1.0))
+                    }
+                } else {
+                    Text("No recordings selected for this question.")
                         .padding()
-                        .background(Color.blue)
+                        .foregroundColor(.primary)
+                }
+
+                Spacer()
+
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Exit to Home Screen")
+                        .padding()
+                        .background(Color.red)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
                 .padding(.bottom, 20)
-                .onAppear {
-                    self.selectRandomSound()
-                    self.playCurrentSound()
-                }
-
-                VStack {
-                    ForEach(sounds, id: \.self) { sound in
-                        Button(action: {
-                            self.checkAnswer(sound)
-                        }) {
-                            Text(formattedFileName(from: sound.lastPathComponent))
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                                .shadow(color: .gray, radius: 5, x: 0, y: 5)
-                        }
-                        .padding(.horizontal)
-                    }
-                }
-                .padding()
-
-                if let isCorrect = isCorrect {
-                    Text(isCorrect ? "Correct!" : "Try Again!")
-                        .font(.title2)
-                        .foregroundColor(isCorrect ? feedbackColor : feedbackColor)
-                        .padding()
-                        .transition(.opacity)
-                        .animation(.easeInOut(duration: 1.0))
-                }
-            } else {
-                Text("No recordings selected for this question.")
-                    .padding()
-                    .foregroundColor(.primary)
             }
-
-            Spacer()
-
-            Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Exit to Home Screen")
-                    .padding()
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
-            .padding(.bottom, 20)
         }
         .background(feedbackColor)
         .animation(.easeInOut(duration: 0.5), value: feedbackColor)
