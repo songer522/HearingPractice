@@ -4,6 +4,7 @@ struct RecordingView: View {
     @ObservedObject var audioRecorder: AudioRecorder
     @State private var newQuestion = ""
     @State private var selectedQuestion: String?
+    @State private var showDeleteAllAlert = false // State for showing the delete all recordings alert
 
     var body: some View {
         VStack {
@@ -55,7 +56,7 @@ struct RecordingView: View {
             }
 
             Button(action: {
-                self.audioRecorder.deleteAllRecordings()
+                self.showDeleteAllAlert = true
             }) {
                 Text("Delete All Recordings")
                     .padding()
@@ -64,6 +65,16 @@ struct RecordingView: View {
                     .cornerRadius(10)
             }
             .padding(.top, 20)
+            .alert(isPresented: $showDeleteAllAlert) {
+                Alert(
+                    title: Text("Delete All Recordings"),
+                    message: Text("Are you sure you want to delete all recordings? This action cannot be undone."),
+                    primaryButton: .destructive(Text("Delete")) {
+                        self.audioRecorder.deleteAllRecordings()
+                    },
+                    secondaryButton: .cancel()
+                )
+            }
 
             Spacer()
         }

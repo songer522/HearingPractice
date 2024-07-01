@@ -25,7 +25,7 @@ struct HearingPracticeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreenView()
         }
         .modelContainer(sharedModelContainer)
     }
