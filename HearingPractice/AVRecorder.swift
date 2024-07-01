@@ -1,23 +1,15 @@
-//
-//  AVRecorder.swift
-//  HearingPractice
-//
-//  Created by Yang Song on 6/29/24.
-//
-import SwiftUI
+import Foundation
 import AVFoundation
 import Speech
-
-struct Recording: Identifiable {
-    let id = UUID()
-    let fileURL: URL
-}
+import SwiftUI
 
 class AudioRecorder: ObservableObject {
     var audioRecorder: AVAudioRecorder?
     @Published var isRecording = false
     @Published var recordingsByQuestion = [String: [Recording]]()
-    
+    @Published var showDuplicateNameAlert = false
+    @Published var duplicateNameErrorMessage = ""
+
     init() {
         requestSpeechRecognitionPermission()
         loadAllRecordings()
@@ -89,6 +81,21 @@ class AudioRecorder: ObservableObject {
     func renameRecording(url: URL, newName: String, for question: String) {
         let newFileName = newName.replacingOccurrences(of: " ", with: "_") + ".m4a"
         let newURL = getDocumentsDirectory().appendingPathComponent(question).appendingPathComponent(newFileName)
+        
+        // Check if the file already exists
+        if FileManager.default.fileExists(atPath: newURL.path) {
+            DispatchQueue.main.async {
+                self.duplicateNameErrorMessage = "A recording with the name \"\(newFileName)\" already exists."
+                self.showDuplicateNameAlert = true
+            }
+            // Delete the original file
+            do {
+                try FileManager.default.removeItem(at: url)
+            } catch {
+                print("Could not delete original file: \(error.localizedDescription)")
+            }
+            return
+        }
 
         do {
             try FileManager.default.moveItem(at: url, to: newURL)
@@ -172,4 +179,3 @@ class AudioRecorder: ObservableObject {
         return configuration.mapValues { $0.compactMap { URL(string: $0) } }
     }
 }
-

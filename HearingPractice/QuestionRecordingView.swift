@@ -5,9 +5,17 @@ struct QuestionRecordingView: View {
     @ObservedObject var audioRecorder: AudioRecorder
     let question: String
     @State private var isRecording = false
-    @State private var showAlert = false
+    @State private var showAlertType: AlertType?
     @State private var recordingToDelete: Recording?
     @Environment(\.presentationMode) var presentationMode // To handle dismissing the view
+
+    enum AlertType: Identifiable {
+        case delete, duplicateName
+
+        var id: Int {
+            hashValue
+        }
+    }
 
     var body: some View {
         VStack {
@@ -36,7 +44,7 @@ struct QuestionRecordingView: View {
                         Spacer()
                         Button(action: {
                             self.recordingToDelete = recording
-                            self.showAlert = true
+                            self.showAlertType = .delete
                         }) {
                             Image(systemName: "trash")
                                 .foregroundColor(.red)
@@ -63,17 +71,34 @@ struct QuestionRecordingView: View {
             .padding()
         }
         .navigationTitle(question)
-        .alert(isPresented: $showAlert) {
-            Alert(
-                title: Text("Delete Recording"),
-                message: Text("Are you sure you want to delete this recording?"),
-                primaryButton: .destructive(Text("Delete")) {
-                    if let recording = recordingToDelete {
-                        deleteRecording(recording, for: question)
+        .alert(item: $showAlertType) { alertType in
+            switch alertType {
+            case .delete:
+                return Alert(
+                    title: Text("Delete Recording"),
+                    message: Text("Are you sure you want to delete this recording?"),
+                    primaryButton: .destructive(Text("Delete")) {
+                        if let recording = recordingToDelete {
+                            deleteRecording(recording, for: question)
+                        }
+                    },
+                    secondaryButton: .cancel()
+                )
+            case .duplicateName:
+                return Alert(
+                    title: Text("Duplicate Recording Name"),
+                    message: Text(audioRecorder.duplicateNameErrorMessage),
+                    dismissButton: .default(Text("OK")) {
+                        audioRecorder.showDuplicateNameAlert = false
+                        audioRecorder.duplicateNameErrorMessage = ""
                     }
-                },
-                secondaryButton: .cancel()
-            )
+                )
+            }
+        }
+        .onReceive(audioRecorder.$showDuplicateNameAlert) { show in
+            if show {
+                self.showAlertType = .duplicateName
+            }
         }
     }
 
