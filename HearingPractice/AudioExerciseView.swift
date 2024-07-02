@@ -11,6 +11,7 @@ struct AudioExerciseView: View {
     @State private var feedbackColor: Color = Color.clear
     @State private var correctAnswers: Int = 0 // Track correct answers
     @State private var correctRecordingName: String? = nil // Track the correct recording name
+    @State private var isPlayingRepeatedly = false // Track if the sound is being played repeatedly
     @ObservedObject var audioPlayer = AudioPlayer()
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
@@ -59,6 +60,7 @@ struct AudioExerciseView: View {
                                     .shadow(color: .gray, radius: 5, x: 0, y: 5)
                             }
                             .padding(.horizontal)
+                            .disabled(isPlayingRepeatedly) // Disable the button if playing repeatedly
                         }
                     }
                     .padding()
@@ -133,7 +135,9 @@ struct AudioExerciseView: View {
                     self.nextQuestionOrSummary()
                 }
             } else {
+                isPlayingRepeatedly = true
                 playSoundRepeatedly(soundURL: sound, times: 3) {
+                    isPlayingRepeatedly = false
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         self.nextQuestionOrSummary()
                     }
