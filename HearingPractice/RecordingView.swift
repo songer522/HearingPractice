@@ -5,6 +5,8 @@ struct RecordingView: View {
     @State private var newQuestion = ""
     @State private var selectedQuestion: String?
     @State private var showDeleteAllAlert = false // State for showing the delete all recordings alert
+    @State private var selectedLanguage: String = "en-US" // Default language
+    let supportedLanguages = ["en-US", "es-ES", "fr-FR", "zh-CN"] // Add more languages as needed
 
     var body: some View {
         VStack {
@@ -21,6 +23,17 @@ struct RecordingView: View {
                         .cornerRadius(10)
                 }
                 .padding()
+            }
+
+            Picker("Select Language", selection: $selectedLanguage) {
+                ForEach(supportedLanguages, id: \.self) { language in
+                    Text(language).tag(language)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding()
+            .onChange(of: selectedLanguage) { newValue in
+                audioRecorder.selectedLanguage = newValue
             }
 
             List {

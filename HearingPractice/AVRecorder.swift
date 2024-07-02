@@ -9,6 +9,7 @@ class AudioRecorder: ObservableObject {
     @Published var recordingsByQuestion = [String: [Recording]]()
     @Published var showDuplicateNameAlert = false
     @Published var duplicateNameErrorMessage = ""
+    @Published var selectedLanguage: String = "en-US" // Default language
 
     init() {
         requestSpeechRecognitionPermission()
@@ -66,10 +67,14 @@ class AudioRecorder: ObservableObject {
     }
 
     func transcribeAudio(url: URL, completion: @escaping (String?) -> Void) {
-        let recognizer = SFSpeechRecognizer()
+        guard let recognizer = SFSpeechRecognizer(locale: Locale(identifier: selectedLanguage)) else {
+            print("Speech recognition not available for locale: \(selectedLanguage)")
+            completion(nil)
+            return
+        }
         let request = SFSpeechURLRecognitionRequest(url: url)
 
-        recognizer?.recognitionTask(with: request) { result, error in
+        recognizer.recognitionTask(with: request) { result, error in
             guard let result = result, result.isFinal else {
                 completion(nil)
                 return
