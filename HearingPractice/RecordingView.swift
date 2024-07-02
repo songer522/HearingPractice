@@ -38,8 +38,14 @@ struct RecordingView: View {
                                 .cornerRadius(5)
                         }
                     }
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            deleteQuestion(question)
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
                 }
-                .onDelete(perform: deleteQuestion)
             }
 
             if audioRecorder.isRecording, let question = selectedQuestion {
@@ -90,12 +96,9 @@ struct RecordingView: View {
         newQuestion = ""
     }
 
-    func deleteQuestion(at offsets: IndexSet) {
-        for index in offsets {
-            let question = Array(audioRecorder.recordingsByQuestion.keys)[index]
-            audioRecorder.recordingsByQuestion.removeValue(forKey: question)
-            // Optionally delete associated recordings from storage if necessary
-        }
+    func deleteQuestion(_ question: String) {
+        audioRecorder.recordingsByQuestion.removeValue(forKey: question)
+        // Optionally delete associated recordings from storage if necessary
     }
 }
 
