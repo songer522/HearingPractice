@@ -24,7 +24,7 @@ struct RecordingView: View {
             }
 
             List {
-                ForEach(Array(audioRecorder.recordingsByQuestion.keys), id: \.self) { question in
+                ForEach(Array(audioRecorder.recordingsByQuestion.keys.sorted()), id: \.self) { question in
                     HStack {
                         Text(question)
                         Spacer()
