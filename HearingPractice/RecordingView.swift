@@ -88,17 +88,31 @@ struct RecordingView: View {
         .sheet(item: $selectedQuestion) { question in
             QuestionRecordingView(audioRecorder: audioRecorder, question: question)
         }
+        .onDisappear {
+            let selectedSounds = audioRecorder.recordingsByQuestion.mapValues { $0.map { $0.fileURL } }
+            audioRecorder.saveConfiguration(selectedSounds)
+        }
     }
 
     func addQuestion() {
         guard !newQuestion.isEmpty else { return }
         audioRecorder.recordingsByQuestion[newQuestion] = []
         newQuestion = ""
+        let selectedSounds = audioRecorder.recordingsByQuestion.mapValues { $0.map { $0.fileURL } }
+        audioRecorder.saveConfiguration(selectedSounds)
     }
 
     func deleteQuestion(_ question: String) {
         audioRecorder.recordingsByQuestion.removeValue(forKey: question)
+        let selectedSounds = audioRecorder.recordingsByQuestion.mapValues { $0.map { $0.fileURL } }
+        audioRecorder.saveConfiguration(selectedSounds)
         // Optionally delete associated recordings from storage if necessary
+        let questionDirectory = audioRecorder.getDocumentsDirectory().appendingPathComponent(question)
+        do {
+            try FileManager.default.removeItem(at: questionDirectory)
+        } catch {
+            print("Could not delete question directory: \(error.localizedDescription)")
+        }
     }
 }
 
