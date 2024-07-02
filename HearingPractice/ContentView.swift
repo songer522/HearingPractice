@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-import SwiftData
+
+import SwiftUI
 
 struct ContentView: View {
     @State private var selectedSounds = [String: [URL]]()
@@ -14,46 +15,37 @@ struct ContentView: View {
     @State private var navigateToHome = false
 
     var body: some View {
-        NavigationView {
-            VStack {
-                NavigationLink(destination: AudioExerciseView(selectedSounds: $selectedSounds, questions: Array(selectedSounds.keys), navigateToHome: $navigateToHome), isActive: $navigateToHome) {
-                    Text("Start Audio Exercises")
-                        .font(.largeTitle)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding(.top, 20)
-
-                NavigationLink(destination: RecordingView(audioRecorder: audioRecorder)) {
-                    Text("Record Sounds")
-                        .font(.title)
-                        .padding()
-                        .background(Color.gray)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding(.top, 20)
-                
-                NavigationLink(destination: ConfigurationView(audioRecorder: audioRecorder, selectedSounds: $selectedSounds)) {
-                    Text("Configure Questions")
-                        .font(.title)
-                        .padding()
-                        .background(Color.orange)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding(.top, 20)
-                
-                Spacer()
+        TabView {
+            NavigationView {
+                AudioExerciseView(
+                    selectedSounds: $selectedSounds,
+                    questions: Array(selectedSounds.keys),
+                    navigateToHome: $navigateToHome
+                )
             }
-            .navigationTitle("Home")
-            .padding()
+            .tabItem {
+                Label("Exercises", systemImage: "play.circle")
+            }
+
+            NavigationView {
+                RecordingView(audioRecorder: audioRecorder)
+            }
+            .tabItem {
+                Label("Record", systemImage: "mic.circle")
+            }
+
+            NavigationView {
+                ConfigurationView(
+                    audioRecorder: audioRecorder,
+                    selectedSounds: $selectedSounds
+                )
+            }
+            .tabItem {
+                Label("Configure", systemImage: "gearshape")
+            }
         }
     }
 }
-
 
 
 #Preview {
