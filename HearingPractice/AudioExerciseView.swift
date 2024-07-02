@@ -10,6 +10,7 @@ struct AudioExerciseView: View {
     @State private var showSummary: Bool = false
     @State private var feedbackColor: Color = Color.clear
     @State private var correctAnswers: Int = 0 // Track correct answers
+    @State private var correctRecordingName: String? = nil // Track the correct recording name
     @ObservedObject var audioPlayer = AudioPlayer()
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
@@ -63,7 +64,7 @@ struct AudioExerciseView: View {
                     .padding()
 
                     if let isCorrect = isCorrect {
-                        Text(isCorrect ? "Correct!" : "Try Again!")
+                        Text(isCorrect ? "Correct!" : "\(correctRecordingName ?? "")")
                             .font(.title2)
                             .foregroundColor(isCorrect ? feedbackColor : feedbackColor)
                             .padding()
@@ -121,6 +122,7 @@ struct AudioExerciseView: View {
             withAnimation {
                 isCorrect = (answer == sound)
                 feedbackColor = (isCorrect == true ? (colorScheme == .dark ? Color.green.opacity(0.7) : Color.green) : (colorScheme == .dark ? Color.red.opacity(0.7) : Color.red))
+                correctRecordingName = formattedFileName(from: sound.lastPathComponent)
                 print("Answer checked: \(isCorrect == true ? "Correct" : "Incorrect")")
             }
 
@@ -148,7 +150,7 @@ struct AudioExerciseView: View {
 
         print("Repeating sound: \(soundURL.lastPathComponent), times left: \(times)")
         audioPlayer.playSound(soundURL: soundURL)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.playSoundRepeatedly(soundURL: soundURL, times: times - 1, completion: completion)
         }
     }
@@ -159,6 +161,7 @@ struct AudioExerciseView: View {
             selectRandomSound()
             isCorrect = nil
             feedbackColor = Color.clear
+            correctRecordingName = nil
             playCurrentSound()
         } else {
             showSummary = true
@@ -171,6 +174,7 @@ struct AudioExerciseView: View {
         selectRandomSound()
         isCorrect = nil
         feedbackColor = Color.clear
+        correctRecordingName = nil
         playCurrentSound()
     }
 
