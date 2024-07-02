@@ -37,6 +37,15 @@ struct ConfigurationView: View {
                     .cornerRadius(10)
             }
             .padding()
+
+            Button(action: selectAllOptions) {
+                Text("Select All Options")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .padding()
         }
         .onAppear {
             selectedSounds = audioRecorder.loadConfiguration()
@@ -76,4 +85,15 @@ struct ConfigurationView: View {
         selectedSounds.removeAll()
         audioRecorder.saveConfiguration(selectedSounds)
     }
+
+    func selectAllOptions() {
+        for question in audioRecorder.recordingsByQuestion.keys {
+            selectedSounds[question] = audioRecorder.recordingsByQuestion[question]?.map { $0.fileURL } ?? []
+        }
+        audioRecorder.saveConfiguration(selectedSounds)
+    }
+}
+
+extension URL: Identifiable {
+    public var id: URL { self }
 }
