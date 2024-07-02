@@ -16,6 +16,8 @@ struct AudioExerciseView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
     @Binding var navigateToHome: Bool
+    @Binding var selectedTab: Int
+    @State private var showRestartAlert: Bool = false
 
     var body: some View {
         VStack {
@@ -24,6 +26,17 @@ struct AudioExerciseView: View {
                     .font(.title)
                     .padding()
                     .foregroundColor(.primary)
+
+                Button(action: {
+                    selectedTab = 2 // Navigate to the "Configure" tab
+                }) {
+                    Text("Go to Configuration")
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.top, 20)
             } else {
                 Text("Question \(currentQuestionIndex + 1) / \(questions.count)")
                     .font(.title)
@@ -82,15 +95,25 @@ struct AudioExerciseView: View {
                 Spacer()
 
                 Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
+                    self.showRestartAlert = true
                 }) {
-                    Text("Exit to Home Screen")
+                    Text("Restart")
                         .padding()
                         .background(Color.red)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
                 .padding(.bottom, 20)
+                .alert(isPresented: $showRestartAlert) {
+                    Alert(
+                        title: Text("Restart Exercise"),
+                        message: Text("Are you sure you want to restart the exercise?"),
+                        primaryButton: .destructive(Text("Restart")) {
+                            self.resetExercise()
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
             }
         }
         .background(feedbackColor)

@@ -7,25 +7,26 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct ContentView: View {
     @State private var selectedSounds = [String: [URL]]()
     @ObservedObject var audioRecorder = AudioRecorder()
     @State private var navigateToHome = false
+    @State private var selectedTab: Int = 0
 
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             NavigationView {
                 AudioExerciseView(
                     selectedSounds: $selectedSounds,
                     questions: Array(selectedSounds.keys),
-                    navigateToHome: $navigateToHome
+                    navigateToHome: $navigateToHome,
+                    selectedTab: $selectedTab
                 )
             }
             .tabItem {
                 Label("Exercises", systemImage: "play.circle")
             }
+            .tag(0)
 
             NavigationView {
                 RecordingView(audioRecorder: audioRecorder)
@@ -33,6 +34,7 @@ struct ContentView: View {
             .tabItem {
                 Label("Record", systemImage: "mic.circle")
             }
+            .tag(1)
 
             NavigationView {
                 ConfigurationView(
@@ -43,6 +45,7 @@ struct ContentView: View {
             .tabItem {
                 Label("Configure", systemImage: "gearshape")
             }
+            .tag(2)
         }
     }
 }
