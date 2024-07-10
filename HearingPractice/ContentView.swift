@@ -12,7 +12,7 @@ struct ContentView: View {
     @ObservedObject var audioRecorder = AudioRecorder()
     @State private var navigateToHome = false
     @State private var selectedTab: Int = 0
-
+    @State private var questions: [QuizQuestion] = []
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationView {

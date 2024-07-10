@@ -5,18 +5,20 @@ struct QuestionConfigView: View {
 
     @State private var newQuestionOptions = ["", "", "", ""]
     @State private var newQuestionText = ""
+    @State private var showingAlert = false
+    @State private var editingIndex: Int? = nil
 
     var body: some View {
         NavigationView {
             VStack {
                 Form {
-                    Section(header: Text("Add New Question")) {
+                    Section(header: Text(editingIndex == nil ? "Add New Question" : "Edit Question")) {
                         TextField("Question", text: $newQuestionText)
                         ForEach(0..<newQuestionOptions.count, id: \.self) { index in
                             TextField("Option \(index + 1)", text: $newQuestionOptions[index])
                         }
-                        Button(action: addNewQuestion) {
-                            Text("Add Question")
+                        Button(action: addOrUpdateQuestion) {
+                            Text(editingIndex == nil ? "Add Question" : "Update Question")
                                 .foregroundColor(.white)
                                 .padding()
                                 .background(Color.blue)
@@ -32,11 +34,19 @@ struct QuestionConfigView: View {
                                 ForEach(questions[index].options.dropFirst(), id: \.self) { option in
                                     Text(option)
                                 }
-                                Button(action: {
-                                    deleteQuestion(at: index)
-                                }) {
-                                    Text("Delete Question")
-                                        .foregroundColor(.red)
+                                HStack {
+                                    Button(action: {
+                                        startEditing(at: index)
+                                    }) {
+                                        Text("Edit")
+                                            .foregroundColor(.blue)
+                                    }
+                                    Button(action: {
+                                        deleteQuestion(at: index)
+                                    }) {
+                                        Text("Delete")
+                                            .foregroundColor(.red)
+                                    }
                                 }
                                 .padding(.top, 5)
                             }
@@ -46,21 +56,47 @@ struct QuestionConfigView: View {
                 }
             }
             .navigationTitle("Configure Questions")
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("Invalid Input"), message: Text("Please make sure all fields are filled out."), dismissButton: .default(Text("OK")))
+            }
         }
     }
 
-    private func addNewQuestion() {
+    private func addOrUpdateQuestion() {
         let trimmedOptions = newQuestionOptions.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-        guard !newQuestionText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
-              !trimmedOptions.contains("") else { return }
+        let trimmedQuestionText = newQuestionText.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        let newQuestion = QuizQuestion(options: [newQuestionText] + trimmedOptions.shuffled())
-        questions.append(newQuestion)
-        newQuestionText = ""
-        newQuestionOptions = ["", "", "", ""]
+        guard !trimmedQuestionText.isEmpty, !trimmedOptions.contains("") else {
+            showingAlert = true
+            return
+        }
+        
+        let newQuestion = QuizQuestion(options: [trimmedQuestionText] + trimmedOptions.shuffled())
+        
+        if let index = editingIndex {
+            questions[index] = newQuestion
+        } else {
+            questions.append(newQuestion)
+        }
+        
+        resetFields()
+    }
+
+    private func startEditing(at index: Int) {
+        let question = questions[index]
+        newQuestionText = question.options.first ?? ""
+        newQuestionOptions = Array(question.options.dropFirst())
+        editingIndex = index
     }
 
     private func deleteQuestion(at index: Int) {
         questions.remove(at: index)
+        resetFields()
+    }
+
+    private func resetFields() {
+        newQuestionText = ""
+        newQuestionOptions = ["", "", "", ""]
+        editingIndex = nil
     }
 }

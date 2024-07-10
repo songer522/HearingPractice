@@ -29,9 +29,12 @@ class AudioPlayer: ObservableObject {
         }
     }
 
-    func speak(text: String, language: String) {
-        let speechUtterance = AVSpeechUtterance(string: text)
-        speechUtterance.voice = AVSpeechSynthesisVoice(language: language)
-        speechSynthesizer.speak(speechUtterance)
-    }
+    func speak(text: String, language: String, rate: Float = 0.45, pitchMultiplier: Float = 1.2, volume: Float = 1.0) {
+            let speechUtterance = AVSpeechUtterance(string: text)
+            speechUtterance.voice = AVSpeechSynthesisVoice(language: language)
+            speechUtterance.rate = rate
+            speechUtterance.pitchMultiplier = pitchMultiplier
+            speechUtterance.volume = volume
+            speechSynthesizer.speak(speechUtterance)
+        }
 }
