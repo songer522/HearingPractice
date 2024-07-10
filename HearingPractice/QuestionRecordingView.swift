@@ -8,6 +8,8 @@ struct QuestionRecordingView: View {
     @State private var showAlert = false
     @State private var recordingToDelete: Recording?
     @State private var audioPlayer: AVAudioPlayer?
+    @State private var playingRecordingID: UUID? // Track the currently playing recording's ID
+    @State private var playButtonScale: CGFloat = 1.0
     @Environment(\.presentationMode) var presentationMode // To handle dismissing the view
 
     var body: some View {
@@ -36,12 +38,22 @@ struct QuestionRecordingView: View {
                         Text(formattedFileName(from: recording.fileURL.lastPathComponent))
                         Spacer()
                         Button(action: {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                self.playingRecordingID = recording.id
+                                self.playButtonScale = 1.2
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    self.playButtonScale = 1.0
+                                }
+                            }
                             self.playRecording(recording)
                         }) {
                             Image(systemName: "play.circle")
                                 .resizable()
                                 .frame(width: 30, height: 30)
                                 .foregroundColor(.blue)
+                                .scaleEffect(self.playingRecordingID == recording.id ? playButtonScale : 1.0)
                         }
                         .buttonStyle(BorderlessButtonStyle())
                         .padding(.trailing, 10)

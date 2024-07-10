@@ -14,7 +14,7 @@
 		FC4393F02C31056700860D99 /* HearingPracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393EF2C31056700860D99 /* HearingPracticeTests.swift */; };
 		FC4393FA2C31056700860D99 /* HearingPracticeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393F92C31056700860D99 /* HearingPracticeUITests.swift */; };
 		FC4393FC2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393FB2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift */; };
-		FC43940B2C3109C400860D99 /* AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43940A2C3109BF00860D99 /* AVPlayer.swift */; };
+		FC43940B2C3109C400860D99 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43940A2C3109BF00860D99 /* AudioPlayer.swift */; };
 		FC43940D2C310A9900860D99 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43940C2C310A9900860D99 /* Item.swift */; };
 		FC43940F2C310B7300860D99 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43940E2C310B6B00860D99 /* SummaryView.swift */; };
 		FC4394132C310F6000860D99 /* AVRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4394122C310F5B00860D99 /* AVRecorder.swift */; };
@@ -55,7 +55,7 @@
 		FC4393F52C31056700860D99 /* HearingPracticeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HearingPracticeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4393F92C31056700860D99 /* HearingPracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearingPracticeUITests.swift; sourceTree = "<group>"; };
 		FC4393FB2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearingPracticeUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FC43940A2C3109BF00860D99 /* AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayer.swift; sourceTree = "<group>"; };
+		FC43940A2C3109BF00860D99 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		FC43940C2C310A9900860D99 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FC43940E2C310B6B00860D99 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		FC4394122C310F5B00860D99 /* AVRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVRecorder.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 				FC4393DB2C31056600860D99 /* HearingPracticeApp.swift */,
 				FC43941E2C3269CA00860D99 /* SplashScreenView.swift */,
 				FC4393DD2C31056600860D99 /* ContentView.swift */,
-				FC43940A2C3109BF00860D99 /* AVPlayer.swift */,
+				FC43940A2C3109BF00860D99 /* AudioPlayer.swift */,
 				FC4394162C3123BB00860D99 /* AudioExerciseView.swift */,
 				FC43940E2C310B6B00860D99 /* SummaryView.swift */,
 				FC43940C2C310A9900860D99 /* Item.swift */,
@@ -299,7 +299,7 @@
 				FC4394152C3112A600860D99 /* ConfigurationView.swift in Sources */,
 				FC43941B2C312DC500860D99 /* QuestionRecordingView.swift in Sources */,
 				FC4393DC2C31056600860D99 /* HearingPracticeApp.swift in Sources */,
-				FC43940B2C3109C400860D99 /* AVPlayer.swift in Sources */,
+				FC43940B2C3109C400860D99 /* AudioPlayer.swift in Sources */,
 				FC43941F2C3269D000860D99 /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
