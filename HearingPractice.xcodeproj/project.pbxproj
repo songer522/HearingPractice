@@ -24,6 +24,9 @@
 		FC43941B2C312DC500860D99 /* QuestionRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941A2C312DBA00860D99 /* QuestionRecordingView.swift */; };
 		FC43941D2C325D8400860D99 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941C2C325D7F00860D99 /* Recording.swift */; };
 		FC43941F2C3269D000860D99 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941E2C3269CA00860D99 /* SplashScreenView.swift */; };
+		FCCB01422C3E37CD00E2CEDA /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB01412C3E37BD00E2CEDA /* QuizQuestion.swift */; };
+		FCCB01442C3E37F400E2CEDA /* RandomAudioExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB01432C3E37D800E2CEDA /* RandomAudioExerciseView.swift */; };
+		FCCB01462C3E3C8B00E2CEDA /* QuestionConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB01452C3E3C7900E2CEDA /* QuestionConfigView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,9 @@
 		FC43941A2C312DBA00860D99 /* QuestionRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRecordingView.swift; sourceTree = "<group>"; };
 		FC43941C2C325D7F00860D99 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		FC43941E2C3269CA00860D99 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		FCCB01412C3E37BD00E2CEDA /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		FCCB01432C3E37D800E2CEDA /* RandomAudioExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAudioExerciseView.swift; sourceTree = "<group>"; };
+		FCCB01452C3E3C7900E2CEDA /* QuestionConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionConfigView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,7 @@
 				FC4394182C312B3400860D99 /* RecordingView.swift */,
 				FC43941A2C312DBA00860D99 /* QuestionRecordingView.swift */,
 				FC4394142C31129D00860D99 /* ConfigurationView.swift */,
+				FCCB01402C3E37A800E2CEDA /* RandomQuiz */,
 				FC4393E12C31056700860D99 /* Assets.xcassets */,
 				FC4393E32C31056700860D99 /* HearingPractice.entitlements */,
 				FC4393E42C31056700860D99 /* Preview Content */,
@@ -157,6 +164,16 @@
 				FC4393FB2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift */,
 			);
 			path = HearingPracticeUITests;
+			sourceTree = "<group>";
+		};
+		FCCB01402C3E37A800E2CEDA /* RandomQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				FCCB01412C3E37BD00E2CEDA /* QuizQuestion.swift */,
+				FCCB01432C3E37D800E2CEDA /* RandomAudioExerciseView.swift */,
+				FCCB01452C3E3C7900E2CEDA /* QuestionConfigView.swift */,
+			);
+			path = RandomQuiz;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,10 +312,13 @@
 				FC43940F2C310B7300860D99 /* SummaryView.swift in Sources */,
 				FC4394172C3123C500860D99 /* AudioExerciseView.swift in Sources */,
 				FC4394192C312B3800860D99 /* RecordingView.swift in Sources */,
+				FCCB01462C3E3C8B00E2CEDA /* QuestionConfigView.swift in Sources */,
+				FCCB01442C3E37F400E2CEDA /* RandomAudioExerciseView.swift in Sources */,
 				FC43941D2C325D8400860D99 /* Recording.swift in Sources */,
 				FC4394152C3112A600860D99 /* ConfigurationView.swift in Sources */,
 				FC43941B2C312DC500860D99 /* QuestionRecordingView.swift in Sources */,
 				FC4393DC2C31056600860D99 /* HearingPracticeApp.swift in Sources */,
+				FCCB01422C3E37CD00E2CEDA /* QuizQuestion.swift in Sources */,
 				FC43940B2C3109C400860D99 /* AudioPlayer.swift in Sources */,
 				FC43941F2C3269D000860D99 /* SplashScreenView.swift in Sources */,
 			);

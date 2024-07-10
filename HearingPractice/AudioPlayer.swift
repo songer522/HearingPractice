@@ -1,17 +1,12 @@
-//
-//  AVPlayer.swift
-//  HearingPractice
-//
-//  Created by Yang Song on 6/29/24.
-//
-
 import SwiftUI
 import AVFoundation
 
 class AudioPlayer: ObservableObject {
     var audioPlayer: AVAudioPlayer?
+    var speechSynthesizer: AVSpeechSynthesizer
 
     init() {
+        self.speechSynthesizer = AVSpeechSynthesizer()
         configureAudioSession()
     }
     
@@ -33,9 +28,10 @@ class AudioPlayer: ObservableObject {
             print("Error playing sound: \(error.localizedDescription)")
         }
     }
+
+    func speak(text: String, language: String) {
+        let speechUtterance = AVSpeechUtterance(string: text)
+        speechUtterance.voice = AVSpeechSynthesisVoice(language: language)
+        speechSynthesizer.speak(speechUtterance)
+    }
 }
-
-
-
-
-

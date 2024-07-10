@@ -46,6 +46,14 @@ struct ContentView: View {
                 Label("Configure", systemImage: "gearshape")
             }
             .tag(2)
+            
+            NavigationView {
+                RandomAudioExerciseView()
+            }
+            .tabItem {
+                Label("Random quiz", systemImage: "play.circle")
+            }
+            .tag(3)
         }
     }
 }
