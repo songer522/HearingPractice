@@ -24,6 +24,7 @@
 		FC43941B2C312DC500860D99 /* QuestionRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941A2C312DBA00860D99 /* QuestionRecordingView.swift */; };
 		FC43941D2C325D8400860D99 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941C2C325D7F00860D99 /* Recording.swift */; };
 		FC43941F2C3269D000860D99 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941E2C3269CA00860D99 /* SplashScreenView.swift */; };
+		FC5FBD292F3C3F86006A5356 /* RandomQuizSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FBD282F3C3F86006A5356 /* RandomQuizSettingsView.swift */; };
 		FCCB01422C3E37CD00E2CEDA /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB01412C3E37BD00E2CEDA /* QuizQuestion.swift */; };
 		FCCB01442C3E37F400E2CEDA /* RandomAudioExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB01432C3E37D800E2CEDA /* RandomAudioExerciseView.swift */; };
 		FCCB01462C3E3C8B00E2CEDA /* QuestionConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB01452C3E3C7900E2CEDA /* QuestionConfigView.swift */; };
@@ -69,6 +70,7 @@
 		FC43941A2C312DBA00860D99 /* QuestionRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRecordingView.swift; sourceTree = "<group>"; };
 		FC43941C2C325D7F00860D99 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		FC43941E2C3269CA00860D99 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		FC5FBD282F3C3F86006A5356 /* RandomQuizSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomQuizSettingsView.swift; sourceTree = "<group>"; };
 		FCCB01412C3E37BD00E2CEDA /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		FCCB01432C3E37D800E2CEDA /* RandomAudioExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAudioExerciseView.swift; sourceTree = "<group>"; };
 		FCCB01452C3E3C7900E2CEDA /* QuestionConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionConfigView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				FCCB01412C3E37BD00E2CEDA /* QuizQuestion.swift */,
 				FCCB01432C3E37D800E2CEDA /* RandomAudioExerciseView.swift */,
 				FCCB01452C3E3C7900E2CEDA /* QuestionConfigView.swift */,
+				FC5FBD282F3C3F86006A5356 /* RandomQuizSettingsView.swift */,
 			);
 			path = RandomQuiz;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 			files = (
 				FC43940D2C310A9900860D99 /* Item.swift in Sources */,
 				FC4393DE2C31056600860D99 /* ContentView.swift in Sources */,
+				FC5FBD292F3C3F86006A5356 /* RandomQuizSettingsView.swift in Sources */,
 				FC4394132C310F6000860D99 /* AVRecorder.swift in Sources */,
 				FC43940F2C310B7300860D99 /* SummaryView.swift in Sources */,
 				FCCB01492C3E479D00E2CEDA /* Categories.swift in Sources */,
