@@ -14,7 +14,7 @@ class AudioPlayer: ObservableObject {
     func configureAudioSession() {
         do {
             let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(.playAndRecord, options: .defaultToSpeaker)
+            try audioSession.setCategory(.playback, mode: .default)
             try audioSession.setActive(true)
         } catch {
             print("Failed to set audio session category: \(error.localizedDescription)")

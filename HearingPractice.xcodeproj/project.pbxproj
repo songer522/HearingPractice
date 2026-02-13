@@ -16,13 +16,6 @@
 		FC4393FC2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393FB2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift */; };
 		FC43940B2C3109C400860D99 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43940A2C3109BF00860D99 /* AudioPlayer.swift */; };
 		FC43940D2C310A9900860D99 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43940C2C310A9900860D99 /* Item.swift */; };
-		FC43940F2C310B7300860D99 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43940E2C310B6B00860D99 /* SummaryView.swift */; };
-		FC4394132C310F6000860D99 /* AVRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4394122C310F5B00860D99 /* AVRecorder.swift */; };
-		FC4394152C3112A600860D99 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4394142C31129D00860D99 /* ConfigurationView.swift */; };
-		FC4394172C3123C500860D99 /* AudioExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4394162C3123BB00860D99 /* AudioExerciseView.swift */; };
-		FC4394192C312B3800860D99 /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4394182C312B3400860D99 /* RecordingView.swift */; };
-		FC43941B2C312DC500860D99 /* QuestionRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941A2C312DBA00860D99 /* QuestionRecordingView.swift */; };
-		FC43941D2C325D8400860D99 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941C2C325D7F00860D99 /* Recording.swift */; };
 		FC43941F2C3269D000860D99 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941E2C3269CA00860D99 /* SplashScreenView.swift */; };
 		FC5FBD292F3C3F86006A5356 /* RandomQuizSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FBD282F3C3F86006A5356 /* RandomQuizSettingsView.swift */; };
 		FC5FBD2B2F3C5956006A5356 /* QuizResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FBD2A2F3C5956006A5356 /* QuizResult.swift */; };
@@ -66,13 +59,6 @@
 		FC4393FB2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearingPracticeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FC43940A2C3109BF00860D99 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		FC43940C2C310A9900860D99 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		FC43940E2C310B6B00860D99 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
-		FC4394122C310F5B00860D99 /* AVRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVRecorder.swift; sourceTree = "<group>"; };
-		FC4394142C31129D00860D99 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
-		FC4394162C3123BB00860D99 /* AudioExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioExerciseView.swift; sourceTree = "<group>"; };
-		FC4394182C312B3400860D99 /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
-		FC43941A2C312DBA00860D99 /* QuestionRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRecordingView.swift; sourceTree = "<group>"; };
-		FC43941C2C325D7F00860D99 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		FC43941E2C3269CA00860D99 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		FC5FBD282F3C3F86006A5356 /* RandomQuizSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomQuizSettingsView.swift; sourceTree = "<group>"; };
 		FC5FBD2A2F3C5956006A5356 /* QuizResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResult.swift; sourceTree = "<group>"; };
@@ -139,14 +125,7 @@
 				FC43941E2C3269CA00860D99 /* SplashScreenView.swift */,
 				FC4393DD2C31056600860D99 /* ContentView.swift */,
 				FC43940A2C3109BF00860D99 /* AudioPlayer.swift */,
-				FC4394162C3123BB00860D99 /* AudioExerciseView.swift */,
-				FC43940E2C310B6B00860D99 /* SummaryView.swift */,
 				FC43940C2C310A9900860D99 /* Item.swift */,
-				FC4394122C310F5B00860D99 /* AVRecorder.swift */,
-				FC43941C2C325D7F00860D99 /* Recording.swift */,
-				FC4394182C312B3400860D99 /* RecordingView.swift */,
-				FC43941A2C312DBA00860D99 /* QuestionRecordingView.swift */,
-				FC4394142C31129D00860D99 /* ConfigurationView.swift */,
 				FCCB01472C3E478A00E2CEDA /* Quiz Pool */,
 				FCCB01402C3E37A800E2CEDA /* RandomQuiz */,
 				FC4393E12C31056700860D99 /* Assets.xcassets */,
@@ -337,19 +316,12 @@
 				FC43940D2C310A9900860D99 /* Item.swift in Sources */,
 				FC4393DE2C31056600860D99 /* ContentView.swift in Sources */,
 				FC5FBD292F3C3F86006A5356 /* RandomQuizSettingsView.swift in Sources */,
-				FC4394132C310F6000860D99 /* AVRecorder.swift in Sources */,
-				FC43940F2C310B7300860D99 /* SummaryView.swift in Sources */,
 				FCCB01492C3E479D00E2CEDA /* Categories.swift in Sources */,
-				FC4394172C3123C500860D99 /* AudioExerciseView.swift in Sources */,
-				FC4394192C312B3800860D99 /* RecordingView.swift in Sources */,
 				FC5FBD2D2F3C5969006A5356 /* ResultsView.swift in Sources */,
 				FCCB01462C3E3C8B00E2CEDA /* QuestionConfigView.swift in Sources */,
 				FCCB01442C3E37F400E2CEDA /* RandomAudioExerciseView.swift in Sources */,
-				FC43941D2C325D8400860D99 /* Recording.swift in Sources */,
 				FC5FBD2B2F3C5956006A5356 /* QuizResult.swift in Sources */,
 				FC5FBD322F3D95F9006A5356 /* WelcomeTutorialView.swift in Sources */,
-				FC4394152C3112A600860D99 /* ConfigurationView.swift in Sources */,
-				FC43941B2C312DC500860D99 /* QuestionRecordingView.swift in Sources */,
 				FC4393DC2C31056600860D99 /* HearingPracticeApp.swift in Sources */,
 				FC5FBD2F2F3C5C20006A5356 /* TipJarView.swift in Sources */,
 				FCCB01422C3E37CD00E2CEDA /* QuizQuestion.swift in Sources */,
