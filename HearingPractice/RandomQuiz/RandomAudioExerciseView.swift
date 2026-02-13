@@ -29,11 +29,13 @@ struct RandomAudioExerciseView: View {
     @State private var backgroundColor = Color(UIColor.systemBackground)
     @State private var correctAnswer: String?
     @State private var isAnswerLocked = false
+    @State private var showWrongAnswerSheet = false
     
     @ObservedObject private var audioPlayer = AudioPlayer()
+    @ObservedObject private var resultsManager = QuizResultsManager()
 
     // New state variable to hold the selected category
-    @State private var selectedCategory: Category = .food
+    @State private var selectedCategory: Category = Category.allCases.randomElement() ?? .food
     
     // Configurable number of options per question
     @State private var numberOfOptions: Int = 4
@@ -49,39 +51,108 @@ struct RandomAudioExerciseView: View {
     
     // State to control settings sheet
     @State private var showSettings = false
+    
+    // Dynamic scaling based on screen size (both width and height)
+    private func scaleFactor(for size: CGSize) -> CGFloat {
+        let width = size.width
+        let height = size.height
+        
+        // iPhone portrait: ~390-430 width, ~800+ height
+        // iPhone landscape: ~800+ width, ~390-430 height
+        // iPad: both dimensions are large
+        
+        // If height is very limited (landscape mode), use conservative scaling
+        if height < 500 {
+            return 1.0 // Landscape on small devices - keep original size
+        }
+        
+        // Otherwise scale based on width
+        if width < 500 {
+            return 1.0 // iPhone portrait
+        } else if width < 700 {
+            return 1.15 // iPad split view or small window
+        } else if width < 900 {
+            return 1.3 // iPad medium
+        } else {
+            return 1.5 // iPad full screen
+        }
+    }
 
     var body: some View {
         NavigationView {
             ZStack {
+            // Colorful gradient background
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(red: 0.4, green: 0.7, blue: 1.0),  // Light blue
+                    Color(red: 0.6, green: 0.8, blue: 1.0),  // Lighter blue
+                    Color(red: 0.9, green: 0.95, blue: 1.0)  // Very light blue
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .edgesIgnoringSafeArea(.all)
+            
+            // Overlay background color for correct/wrong feedback
             backgroundColor
+                .opacity(backgroundColor == Color(UIColor.systemBackground) ? 0 : 0.3)
                 .edgesIgnoringSafeArea(.all)
 
-            ScrollView {
-                VStack {
+            GeometryReader { geometry in
+                let scale = scaleFactor(for: geometry.size)
+                let shouldCenter = geometry.size.width >= 700 && geometry.size.height > 600
+                let isLandscapeCompact = geometry.size.height < 500
+                
+                ScrollView {
+                    VStack(spacing: 0) {
+                        if shouldCenter {
+                            Spacer(minLength: 0)
+                        }
                     if currentQuestionIndex < questions.count {
                         let currentQuestion = questions[currentQuestionIndex]
                         
-                        Text("Question \(currentQuestionIndex + 1) of \(questions.count)")
-                            .font(.title2)
-                            .padding()
+                        VStack(spacing: isLandscapeCompact ? 4 : 12 * scale) {
+                            Text("Question \(currentQuestionIndex + 1) of \(questions.count)")
+                                .font(.system(size: 28 * scale, weight: .semibold))
+                                .foregroundColor(Color(UIColor.label))
+                            
+                            // Show current score and correct rate
+                            if currentQuestionIndex > 0 {
+                                let percentage = Int((Double(score) / Double(currentQuestionIndex)) * 100)
+                                Text("\(score) of \(currentQuestionIndex), \(percentage)% correct")
+                                    .font(.system(size: 22 * scale, weight: .medium))
+                                    .foregroundColor(Color(UIColor.label))
+                            }
+                        }
+                        .padding(.horizontal)
+                        .padding(.vertical, isLandscapeCompact ? 8 : 20)
+                        .padding(.top, isLandscapeCompact ? 4 : 20 * scale)
 
                         Button(action: {
                             playPhrase(from: currentQuestion)
                         }) {
-                            HStack {
+                            HStack(spacing: isLandscapeCompact ? 10 : 15 * scale) {
                                 Image(systemName: "play.circle.fill")
-                                    .font(.title)
+                                    .font(.system(size: isLandscapeCompact ? 28 : 36 * scale))
                                 Text("Play Phrase")
+                                    .font(.system(size: isLandscapeCompact ? 20 : 28 * scale, weight: .semibold))
                             }
-                            .font(.title)
-                            .padding()
-                            .background(Color.blue)
+                            .padding(.horizontal, isLandscapeCompact ? 30 : 40 * scale)
+                            .padding(.vertical, isLandscapeCompact ? 12 : 20 * scale)
+                            .background(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color.blue, Color.purple]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
                             .foregroundColor(.white)
-                            .cornerRadius(10)
+                            .cornerRadius(isLandscapeCompact ? 15 : 20 * scale)
+                            .shadow(color: .purple.opacity(0.4), radius: isLandscapeCompact ? 6 : 10 * scale, x: 0, y: isLandscapeCompact ? 3 : 5 * scale)
                         }
-                        .padding()
+                        .padding(.bottom, isLandscapeCompact ? 15 : 40 * scale)
 
-                        FlowLayout(spacing: 10) {
+                        FlowLayout(spacing: isLandscapeCompact ? 8 : 15 * scale) {
                             ForEach(currentQuestion.options, id: \.self) { option in
                                 Button(action: {
                                     if !isAnswerLocked {
@@ -90,103 +161,83 @@ struct RandomAudioExerciseView: View {
                                     }
                                 }) {
                                     Text(option)
-                                        .font(.title2)
-                                        .padding()
-                                        .background(selectedAnswer == option ? Color.gray : Color(UIColor.systemBackground))
-                                        .foregroundColor(.primary)
-                                        .cornerRadius(10)
+                                        .font(.system(size: isLandscapeCompact ? 18 : 22 * scale, weight: .medium))
+                                        .padding(.horizontal, isLandscapeCompact ? 16 : 20 * scale)
+                                        .padding(.vertical, isLandscapeCompact ? 10 : 16 * scale)
+                                        .background(
+                                            selectedAnswer == option 
+                                            ? Color.orange
+                                            : Color(UIColor.systemBackground)
+                                        )
+                                        .foregroundColor(
+                                            selectedAnswer == option 
+                                            ? .white 
+                                            : Color(UIColor.label)
+                                        )
+                                        .cornerRadius(15 * scale)
+                                        .shadow(color: .black.opacity(0.2), radius: 5 * scale, x: 0, y: 3 * scale)
                                         .overlay(
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color.blue, lineWidth: 2)
+                                            RoundedRectangle(cornerRadius: 15 * scale)
+                                                .stroke(
+                                                    selectedAnswer == option ? Color.orange : Color.blue,
+                                                    lineWidth: 3 * scale
+                                                )
                                         )
                                 }
                                 .disabled(isAnswerLocked)
                                 .opacity(isAnswerLocked ? 0.6 : 1.0)
                             }
                         }
-                        .padding(.horizontal)
-                        
-                        if let correctAnswer = correctAnswer, selectedAnswer != correctAnswer {
-                            VStack(spacing: 15) {
-                                Text("Correct Answer: \(correctAnswer)")
-                                    .font(.headline)
-                                    .foregroundColor(.green)
-                                    .padding(.top, 20)
-                                
-                                HStack(spacing: 20) {
-                                    Button(action: {
-                                        repeatCorrectAnswer()
-                                    }) {
-                                        HStack {
-                                            Image(systemName: "speaker.wave.2.fill")
-                                            Text("Repeat Answer")
-                                        }
-                                        .font(.title3)
-                                        .padding()
-                                        .background(Color.blue)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(10)
-                                    }
-                                    
-                                    Button(action: {
-                                        nextQuestion()
-                                    }) {
-                                        HStack {
-                                            Text("Next Question")
-                                            Image(systemName: "arrow.right")
-                                        }
-                                        .font(.title3)
-                                        .padding()
-                                        .background(Color.green)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(10)
-                                    }
-                                }
-                                .padding(.top, 10)
-                            }
-                        }
-                        
-                        // Show current score and correct rate
-                        if currentQuestionIndex > 0 {
-                            let percentage = Int((Double(score) / Double(currentQuestionIndex)) * 100)
-                            Text("\(score) of \(currentQuestionIndex), \(percentage)% correct")
-                                .font(.title2)
-                                .foregroundColor(.secondary)
-                                .padding(.top, 20)
-                                .padding(.bottom, 20)
-                        }
+                        .padding(.horizontal, isLandscapeCompact ? 20 : 30 * scale)
+                        .padding(.bottom, isLandscapeCompact ? 20 : 60 * scale)
                     } else {
-                        VStack(spacing: 20) {
+                        VStack(spacing: 20 * scale) {
                             Text("Quiz Completed")
-                                .font(.largeTitle)
+                                .font(.system(size: 34 * scale, weight: .bold))
+                                .foregroundColor(Color(UIColor.label))
                                 .padding()
                             Text("Your Score: \(score) / \(questions.count)")
-                                .font(.title)
+                                .font(.system(size: 28 * scale, weight: .semibold))
+                                .foregroundColor(Color(UIColor.label))
                                 .padding()
                             
                             let percentage = questions.count > 0 ? Int((Double(score) / Double(questions.count)) * 100) : 0
                             Text("\(percentage)% Correct")
-                                .font(.title2)
-                                .foregroundColor(.secondary)
+                                .font(.system(size: 22 * scale, weight: .medium))
+                                .foregroundColor(Color(UIColor.label))
                             
                             Button(action: {
                                 resetQuiz()
                             }) {
                                 Text("Restart Quiz")
-                                    .font(.title)
-                                    .padding()
+                                    .font(.system(size: 28 * scale, weight: .semibold))
+                                    .padding(.horizontal, 40 * scale)
+                                    .padding(.vertical, 20 * scale)
                                     .background(Color.green)
                                     .foregroundColor(.white)
-                                    .cornerRadius(10)
+                                    .cornerRadius(15 * scale)
                             }
                             .padding()
                         }
-                        .padding(.top, 40)
+                        .padding(.top, 40 * scale)
+                    }
+                    
+                    if shouldCenter {
+                        Spacer(minLength: 0)
                     }
                 }
+                .frame(minHeight: shouldCenter ? geometry.size.height : nil)
+                .frame(maxWidth: .infinity)
                 .padding()
+                }
             }
             .onAppear(perform: loadQuestions)
+            .onChange(of: currentQuestionIndex) { newIndex in
+                // Save result when quiz is completed
+                if newIndex >= questions.count && questions.count > 0 {
+                    saveQuizResult()
+                }
+            }
             .animation(.easeInOut, value: backgroundColor)
             }
             .navigationTitle(selectedCategory.rawValue)
@@ -211,7 +262,29 @@ struct RandomAudioExerciseView: View {
                 }
             }
             .sheet(isPresented: $showSettings) {
-                RandomQuizSettingsView(selectedCategory: $selectedCategory, numberOfOptions: $numberOfOptions, speechSpeed: $speechSpeed, numberOfQuestions: $numberOfQuestions, environment: $environment)
+                RandomQuizSettingsView(selectedCategory: $selectedCategory, numberOfOptions: $numberOfOptions, speechSpeed: $speechSpeed, numberOfQuestions: $numberOfQuestions, environment: $environment, resultsManager: resultsManager)
+                    .presentationDetents([.large])
+                    .presentationBackgroundInteraction(.disabled)
+            }
+            .sheet(isPresented: $showWrongAnswerSheet, onDismiss: {
+                // Ensure we move to next question when sheet is dismissed
+                // Only call if we haven't already advanced (check if correctAnswer is still set)
+                if correctAnswer != nil {
+                    nextQuestion()
+                }
+            }) {
+                WrongAnswerFeedbackView(
+                    correctAnswer: correctAnswer ?? "",
+                    onRepeat: {
+                        repeatCorrectAnswer()
+                    },
+                    onNext: {
+                        showWrongAnswerSheet = false
+                        // nextQuestion() will be called in onDismiss
+                    }
+                )
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
             }
             .onChange(of: selectedCategory) { _ in
                 resetQuiz()
@@ -223,6 +296,7 @@ struct RandomAudioExerciseView: View {
                 resetQuiz()
             }
         }
+        .navigationViewStyle(.stack)
     }
 
     // Load questions from a string array
@@ -271,7 +345,22 @@ struct RandomAudioExerciseView: View {
     func loadQuestions(from quizQuestions: [QuizQuestion]) {
         // Shuffle the questions and take only the number needed
         let shuffledQuestions = quizQuestions.shuffled()
-        questions = Array(shuffledQuestions.prefix(numberOfQuestions))
+        let selectedQuestions = Array(shuffledQuestions.prefix(numberOfQuestions))
+        
+        // Adjust the number of options for each question if needed
+        var adjustedQuestions: [QuizQuestion] = []
+        for question in selectedQuestions {
+            if question.options.count >= numberOfOptions {
+                // If question has enough options, randomly select the required number
+                let selectedOptions = Array(question.options.shuffled().prefix(numberOfOptions))
+                adjustedQuestions.append(QuizQuestion(options: selectedOptions))
+            } else {
+                // If not enough options, use all available options
+                adjustedQuestions.append(question)
+            }
+        }
+        
+        questions = adjustedQuestions
     }
 
     func loadQuestions() {
@@ -335,6 +424,11 @@ struct RandomAudioExerciseView: View {
     }
 
     func checkAnswer(for question: QuizQuestion, selectedOption: String) {
+        // Ensure we have a correct answer set (in case user didn't play the phrase)
+        if lastPlayedPhrase == nil {
+            lastPlayedPhrase = question.options.randomElement()
+        }
+        
         if selectedOption == lastPlayedPhrase {
             score += 1
             backgroundColor = Color.green
@@ -347,9 +441,10 @@ struct RandomAudioExerciseView: View {
             backgroundColor = Color.red
             correctAnswer = lastPlayedPhrase
             isAnswerLocked = true
-            // Don't auto-advance - let user control when to move on
+            // Show the wrong answer feedback sheet
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.backgroundColor = Color(UIColor.systemBackground)
+                self.showWrongAnswerSheet = true
             }
         }
     }
@@ -376,6 +471,19 @@ struct RandomAudioExerciseView: View {
         isAnswerLocked = false
         backgroundColor = Color(UIColor.systemBackground)
         loadQuestions()
+    }
+    
+    func saveQuizResult() {
+        let result = QuizResult(
+            categoryName: selectedCategory.rawValue,
+            numberOfQuestions: numberOfQuestions,
+            numberOfOptions: numberOfOptions,
+            correctAnswers: score,
+            totalQuestions: questions.count,
+            speechSpeed: speechSpeed.rawValue,
+            environment: environment.rawValue
+        )
+        resultsManager.saveResult(result)
     }
 }
 
@@ -462,6 +570,126 @@ struct FlowLayout: Layout {
             
             self.positions = tempPositions
             self.size = CGSize(width: maxWidth, height: y)
+        }
+    }
+}
+
+// MARK: - Wrong Answer Feedback View
+struct WrongAnswerFeedbackView: View {
+    let correctAnswer: String
+    let onRepeat: () -> Void
+    let onNext: () -> Void
+    
+    var body: some View {
+        GeometryReader { geometry in
+            let scale = scaleFactor(for: geometry.size)
+            
+            VStack(spacing: 25 * scale) {
+                // Header
+                HStack {
+                    Image(systemName: "exclamationmark.circle.fill")
+                        .font(.system(size: 34 * scale))
+                        .foregroundColor(.orange)
+                    Text("Wrong Answer")
+                        .font(.system(size: 28 * scale, weight: .bold))
+                }
+                .padding(.top, 30 * scale)
+                
+                // Correct answer display
+                VStack(spacing: 10 * scale) {
+                    Text("Correct Answer:")
+                        .font(.system(size: 17 * scale, weight: .semibold))
+                        .foregroundColor(.secondary)
+                    
+                    Text(correctAnswer)
+                        .font(.system(size: 34 * scale, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 30 * scale)
+                        .padding(.vertical, 20 * scale)
+                        .background(
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.green, Color.green.opacity(0.8)]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .cornerRadius(15 * scale)
+                        .shadow(color: .green.opacity(0.4), radius: 10 * scale, x: 0, y: 5 * scale)
+                }
+                .padding(.vertical, 20 * scale)
+                
+                // Action buttons
+                VStack(spacing: 15 * scale) {
+                    Button(action: onRepeat) {
+                        HStack {
+                            Image(systemName: "speaker.wave.2.fill")
+                                .font(.system(size: 22 * scale))
+                            Text("Repeat Answer")
+                                .font(.system(size: 20 * scale, weight: .semibold))
+                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 30 * scale)
+                        .padding(.vertical, 16 * scale)
+                        .background(
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.blue, Color.blue.opacity(0.8)]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .cornerRadius(15 * scale)
+                        .shadow(color: .blue.opacity(0.3), radius: 8 * scale, x: 0, y: 4 * scale)
+                    }
+                    
+                    Button(action: onNext) {
+                        HStack {
+                            Text("Next Question")
+                                .font(.system(size: 20 * scale, weight: .semibold))
+                            Image(systemName: "arrow.right.circle.fill")
+                                .font(.system(size: 22 * scale))
+                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 30 * scale)
+                        .padding(.vertical, 16 * scale)
+                        .background(
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.green, Color.green.opacity(0.8)]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .cornerRadius(15 * scale)
+                        .shadow(color: .green.opacity(0.3), radius: 8 * scale, x: 0, y: 4 * scale)
+                    }
+                }
+                .padding(.horizontal, 30 * scale)
+                
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(UIColor.systemBackground))
+        }
+    }
+    
+    // Same scaling function as main view
+    private func scaleFactor(for size: CGSize) -> CGFloat {
+        let width = size.width
+        let height = size.height
+        
+        if height < 500 {
+            return 1.0
+        }
+        
+        if width < 500 {
+            return 1.0
+        } else if width < 700 {
+            return 1.15
+        } else if width < 900 {
+            return 1.3
+        } else {
+            return 1.5
         }
     }
 }

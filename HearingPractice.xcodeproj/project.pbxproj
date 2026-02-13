@@ -25,6 +25,10 @@
 		FC43941D2C325D8400860D99 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941C2C325D7F00860D99 /* Recording.swift */; };
 		FC43941F2C3269D000860D99 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941E2C3269CA00860D99 /* SplashScreenView.swift */; };
 		FC5FBD292F3C3F86006A5356 /* RandomQuizSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FBD282F3C3F86006A5356 /* RandomQuizSettingsView.swift */; };
+		FC5FBD2B2F3C5956006A5356 /* QuizResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FBD2A2F3C5956006A5356 /* QuizResult.swift */; };
+		FC5FBD2D2F3C5969006A5356 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FBD2C2F3C5969006A5356 /* ResultsView.swift */; };
+		FC5FBD2F2F3C5C20006A5356 /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FBD2E2F3C5C20006A5356 /* TipJarView.swift */; };
+		FC5FBD322F3D95F9006A5356 /* WelcomeTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FBD312F3D95F9006A5356 /* WelcomeTutorialView.swift */; };
 		FCCB01422C3E37CD00E2CEDA /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB01412C3E37BD00E2CEDA /* QuizQuestion.swift */; };
 		FCCB01442C3E37F400E2CEDA /* RandomAudioExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB01432C3E37D800E2CEDA /* RandomAudioExerciseView.swift */; };
 		FCCB01462C3E3C8B00E2CEDA /* QuestionConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCB01452C3E3C7900E2CEDA /* QuestionConfigView.swift */; };
@@ -71,6 +75,11 @@
 		FC43941C2C325D7F00860D99 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		FC43941E2C3269CA00860D99 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		FC5FBD282F3C3F86006A5356 /* RandomQuizSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomQuizSettingsView.swift; sourceTree = "<group>"; };
+		FC5FBD2A2F3C5956006A5356 /* QuizResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResult.swift; sourceTree = "<group>"; };
+		FC5FBD2C2F3C5969006A5356 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		FC5FBD2E2F3C5C20006A5356 /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
+		FC5FBD312F3D95F9006A5356 /* WelcomeTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTutorialView.swift; sourceTree = "<group>"; };
+		FC5FBD332F3DA678006A5356 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		FCCB01412C3E37BD00E2CEDA /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		FCCB01432C3E37D800E2CEDA /* RandomAudioExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAudioExerciseView.swift; sourceTree = "<group>"; };
 		FCCB01452C3E3C7900E2CEDA /* QuestionConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionConfigView.swift; sourceTree = "<group>"; };
@@ -109,6 +118,7 @@
 				FC4393EE2C31056700860D99 /* HearingPracticeTests */,
 				FC4393F82C31056700860D99 /* HearingPracticeUITests */,
 				FC4393D92C31056600860D99 /* Products */,
+				FC5FBD332F3DA678006A5356 /* Configuration.storekit */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +152,7 @@
 				FC4393E12C31056700860D99 /* Assets.xcassets */,
 				FC4393E32C31056700860D99 /* HearingPractice.entitlements */,
 				FC4393E42C31056700860D99 /* Preview Content */,
+				FC5FBD312F3D95F9006A5356 /* WelcomeTutorialView.swift */,
 			);
 			path = HearingPractice;
 			sourceTree = "<group>";
@@ -178,6 +189,9 @@
 				FCCB01432C3E37D800E2CEDA /* RandomAudioExerciseView.swift */,
 				FCCB01452C3E3C7900E2CEDA /* QuestionConfigView.swift */,
 				FC5FBD282F3C3F86006A5356 /* RandomQuizSettingsView.swift */,
+				FC5FBD2A2F3C5956006A5356 /* QuizResult.swift */,
+				FC5FBD2C2F3C5969006A5356 /* ResultsView.swift */,
+				FC5FBD2E2F3C5C20006A5356 /* TipJarView.swift */,
 			);
 			path = RandomQuiz;
 			sourceTree = "<group>";
@@ -328,12 +342,16 @@
 				FCCB01492C3E479D00E2CEDA /* Categories.swift in Sources */,
 				FC4394172C3123C500860D99 /* AudioExerciseView.swift in Sources */,
 				FC4394192C312B3800860D99 /* RecordingView.swift in Sources */,
+				FC5FBD2D2F3C5969006A5356 /* ResultsView.swift in Sources */,
 				FCCB01462C3E3C8B00E2CEDA /* QuestionConfigView.swift in Sources */,
 				FCCB01442C3E37F400E2CEDA /* RandomAudioExerciseView.swift in Sources */,
 				FC43941D2C325D8400860D99 /* Recording.swift in Sources */,
+				FC5FBD2B2F3C5956006A5356 /* QuizResult.swift in Sources */,
+				FC5FBD322F3D95F9006A5356 /* WelcomeTutorialView.swift in Sources */,
 				FC4394152C3112A600860D99 /* ConfigurationView.swift in Sources */,
 				FC43941B2C312DC500860D99 /* QuestionRecordingView.swift in Sources */,
 				FC4393DC2C31056600860D99 /* HearingPracticeApp.swift in Sources */,
+				FC5FBD2F2F3C5C20006A5356 /* TipJarView.swift in Sources */,
 				FCCB01422C3E37CD00E2CEDA /* QuizQuestion.swift in Sources */,
 				FC43940B2C3109C400860D99 /* AudioPlayer.swift in Sources */,
 				FC43941F2C3269D000860D99 /* SplashScreenView.swift in Sources */,
@@ -500,6 +518,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Cochleo;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to the microphone to record your voice.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We need access to speech recognition to transcribe your recordings.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -520,10 +540,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yangsong.HearingPractice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
@@ -541,6 +562,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Cochleo;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to the microphone to record your voice.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We need access to speech recognition to transcribe your recordings.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -561,10 +584,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yangsong.HearingPractice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;

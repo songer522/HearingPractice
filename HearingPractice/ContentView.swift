@@ -8,53 +8,41 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedSounds = [String: [URL]]()
-    @ObservedObject var audioRecorder = AudioRecorder()
-    @State private var navigateToHome = false
-    @State private var selectedTab: Int = 0
-    @State private var questions: [QuizQuestion] = []
-    var body: some View {
-        TabView(selection: $selectedTab) {
-            NavigationView {
-                AudioExerciseView(
-                    selectedSounds: $selectedSounds,
-                    questions: Array(selectedSounds.keys),
-                    navigateToHome: $navigateToHome,
-                    selectedTab: $selectedTab
-                )
-            }
-            .tabItem {
-                Label("Exercises", systemImage: "play.circle")
-            }
-            .tag(0)
-
-            NavigationView {
-                RecordingView(audioRecorder: audioRecorder)
-            }
-            .tabItem {
-                Label("Record", systemImage: "mic.circle")
-            }
-            .tag(1)
-
-            NavigationView {
-                ConfigurationView(
-                    audioRecorder: audioRecorder,
-                    selectedSounds: $selectedSounds
-                )
-            }
-            .tabItem {
-                Label("Configure", systemImage: "gearshape")
-            }
-            .tag(2)
-            
-            NavigationView {
-                RandomAudioExerciseView()
-            }
-            .tabItem {
-                Label("Random quiz", systemImage: "play.circle")
-            }
-            .tag(3)
+    @State private var showWelcomeTutorial = false
+    
+    private var currentAppVersion: String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
+        return "\(version).\(build)"
+    }
+    
+    private var hasSeenTutorialForCurrentVersion: Bool {
+        get {
+            let key = "hasSeenTutorial_\(currentAppVersion)"
+            return UserDefaults.standard.bool(forKey: key)
         }
+    }
+    
+    private func markTutorialAsSeen() {
+        let key = "hasSeenTutorial_\(currentAppVersion)"
+        UserDefaults.standard.set(true, forKey: key)
+    }
+    
+    var body: some View {
+        RandomAudioExerciseView()
+            .sheet(isPresented: $showWelcomeTutorial, onDismiss: {
+                markTutorialAsSeen()
+            }) {
+                WelcomeTutorialView()
+            }
+            .onAppear {
+                if !hasSeenTutorialForCurrentVersion {
+                    // Show tutorial after a short delay for better UX
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        showWelcomeTutorial = true
+                    }
+                }
+            }
     }
 }
 

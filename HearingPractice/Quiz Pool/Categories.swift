@@ -2,18 +2,18 @@
 import Foundation
 
 enum Category: String, CaseIterable {
-    case food = "Food"
-    case animals = "Animals"
-    case disney = "Disney"
-    case phrases = "Phrases"
     case initialConsonants = "Initial Consonants"
     case medialVowels = "Medial Vowels"
     case finalConsonants = "Final Consonants"
+    case food = "Food"
+    case animals = "Animals"
+    case disney = "Disney"
     case colors = "Colors & Shapes"
     case actions = "Action Words"
     case places = "Places"
     case everyday = "Everyday Objects"
     case nature = "Nature & Weather"
+    case phrases = "Phrases"
     // Add more categories here
 }
 let foodItems: [String] = [
@@ -21,136 +21,136 @@ let foodItems: [String] = [
 ]
 
 let phrases = [
-            QuizQuestion(options: ["The cat is sleeping", "The dog is barking", "The bird is flying", "The fish is swimming"]),
-            QuizQuestion(options: ["I like apples", "I like bananas", "I like grapes", "I like oranges"]),
-            QuizQuestion(options: ["The car is fast", "The bike is slow", "The train is on time", "The plane is delayed"]),
-            QuizQuestion(options: ["She is reading a book", "He is writing a letter", "They are watching TV", "We are playing a game"]),
-            QuizQuestion(options: ["The sun is shining", "The moon is bright", "The stars are twinkling", "The clouds are fluffy"]),
-            QuizQuestion(options: ["The flowers are blooming", "The trees are tall", "The grass is green", "The leaves are falling"]),
-            QuizQuestion(options: ["The pizza is hot", "The ice cream is cold", "The soup is warm", "The salad is fresh"]),
-            QuizQuestion(options: ["The music is loud", "The movie is interesting", "The book is thrilling", "The game is fun"]),
-            QuizQuestion(options: ["The house is big", "The apartment is cozy", "The garden is beautiful", "The kitchen is clean"]),
-            QuizQuestion(options: ["The ocean is deep", "The river is flowing", "The lake is calm", "The waterfall is loud"]),
-            QuizQuestion(options: ["The teacher is kind", "The student is attentive", "The class is quiet", "The lesson is important"]),
-            QuizQuestion(options: ["The city is busy", "The village is peaceful", "The town is growing", "The neighborhood is friendly"]),
-            QuizQuestion(options: ["The shop is open", "The market is crowded", "The mall is huge", "The store is closed"]),
-            QuizQuestion(options: ["The computer is new", "The phone is old", "The tablet is fast", "The laptop is slow"]),
-            QuizQuestion(options: ["The cat is purring", "The dog is running", "The bird is chirping", "The fish is jumping"]),
-            QuizQuestion(options: ["The clock is ticking", "The alarm is ringing", "The bell is chiming", "The watch is beeping"]),
-            QuizQuestion(options: ["The doctor is helping", "The nurse is caring", "The patient is resting", "The hospital is busy"]),
-            QuizQuestion(options: ["The sun is setting", "The moon is rising", "The stars are shining", "The night is calm"]),
-            QuizQuestion(options: ["The child is laughing", "The baby is crying", "The parent is smiling", "The family is happy"]),
-            QuizQuestion(options: ["The cake is sweet", "The chocolate is rich", "The candy is colorful", "The cookie is delicious"]),
-            QuizQuestion(options: ["The bus is late", "The train is early", "The taxi is waiting", "The bike is parked"]),
-            QuizQuestion(options: ["The beach is sandy", "The mountain is high", "The forest is dense", "The desert is dry"]),
-            QuizQuestion(options: ["The athlete is strong", "The team is winning", "The coach is guiding", "The game is exciting"]),
-            QuizQuestion(options: ["The chair is comfortable", "The table is sturdy", "The sofa is soft", "The bed is cozy"]),
-            QuizQuestion(options: ["The pasta is tasty", "The rice is fluffy", "The bread is fresh", "The cheese is melted"]),
+            QuizQuestion(options: ["The cat is sleeping", "The dog is barking", "The bird is flying", "The fish is swimming", "The rabbit is hopping", "The turtle is crawling"]),
+            QuizQuestion(options: ["I like apples", "I like bananas", "I like grapes", "I like oranges", "I like peaches", "I like strawberries"]),
+            QuizQuestion(options: ["The car is fast", "The bike is slow", "The train is on time", "The plane is delayed", "The boat is ready", "The bus is coming"]),
+            QuizQuestion(options: ["She is reading a book", "He is writing a letter", "They are watching TV", "We are playing a game", "I am doing homework", "You are drawing pictures"]),
+            QuizQuestion(options: ["The sun is shining", "The moon is bright", "The stars are twinkling", "The clouds are fluffy", "The sky is clear", "The night is dark"]),
+            QuizQuestion(options: ["The flowers are blooming", "The trees are tall", "The grass is green", "The leaves are falling", "The bushes are growing", "The plants are healthy"]),
+            QuizQuestion(options: ["The pizza is hot", "The ice cream is cold", "The soup is warm", "The salad is fresh", "The sandwich is tasty", "The cookie is sweet"]),
+            QuizQuestion(options: ["The music is loud", "The movie is interesting", "The book is thrilling", "The game is fun", "The show is exciting", "The story is amazing"]),
+            QuizQuestion(options: ["The house is big", "The apartment is cozy", "The garden is beautiful", "The kitchen is clean", "The bedroom is neat", "The bathroom is tidy"]),
+            QuizQuestion(options: ["The ocean is deep", "The river is flowing", "The lake is calm", "The waterfall is loud", "The pond is still", "The stream is clear"]),
+            QuizQuestion(options: ["The teacher is kind", "The student is attentive", "The class is quiet", "The lesson is important", "The homework is ready", "The test is tomorrow"]),
+            QuizQuestion(options: ["The city is busy", "The village is peaceful", "The town is growing", "The neighborhood is friendly", "The street is crowded", "The park is empty"]),
+            QuizQuestion(options: ["The shop is open", "The market is crowded", "The mall is huge", "The store is closed", "The bakery is busy", "The cafe is quiet"]),
+            QuizQuestion(options: ["The computer is new", "The phone is old", "The tablet is fast", "The laptop is slow", "The keyboard is clean", "The mouse is working"]),
+            QuizQuestion(options: ["The cat is purring", "The dog is running", "The bird is chirping", "The fish is jumping", "The hamster is spinning", "The rabbit is eating"]),
+            QuizQuestion(options: ["The clock is ticking", "The alarm is ringing", "The bell is chiming", "The watch is beeping", "The timer is counting", "The buzzer is sounding"]),
+            QuizQuestion(options: ["The doctor is helping", "The nurse is caring", "The patient is resting", "The hospital is busy", "The clinic is open", "The medicine is working"]),
+            QuizQuestion(options: ["The sun is setting", "The moon is rising", "The stars are shining", "The night is calm", "The dawn is breaking", "The sky is glowing"]),
+            QuizQuestion(options: ["The child is laughing", "The baby is crying", "The parent is smiling", "The family is happy", "The toddler is playing", "The sister is singing"]),
+            QuizQuestion(options: ["The cake is sweet", "The chocolate is rich", "The candy is colorful", "The cookie is delicious", "The brownie is chewy", "The cupcake is pretty"]),
+            QuizQuestion(options: ["The bus is late", "The train is early", "The taxi is waiting", "The bike is parked", "The car is moving", "The truck is loading"]),
+            QuizQuestion(options: ["The beach is sandy", "The mountain is high", "The forest is dense", "The desert is dry", "The valley is green", "The cliff is steep"]),
+            QuizQuestion(options: ["The athlete is strong", "The team is winning", "The coach is guiding", "The game is exciting", "The player is skilled", "The crowd is cheering"]),
+            QuizQuestion(options: ["The chair is comfortable", "The table is sturdy", "The sofa is soft", "The bed is cozy", "The cushion is fluffy", "The pillow is plump"]),
+            QuizQuestion(options: ["The pasta is tasty", "The rice is fluffy", "The bread is fresh", "The cheese is melted", "The sauce is savory", "The noodles are hot"]),
             
             // Daily Activities
-            QuizQuestion(options: ["I wake up early", "I go to bed late", "I eat breakfast now", "I take a shower first"]),
-            QuizQuestion(options: ["He brushes his teeth", "She combs her hair", "They wash their hands", "We clean our room"]),
-            QuizQuestion(options: ["I am getting dressed", "You are packing lunch", "He is tying shoes", "She is putting on coat"]),
-            QuizQuestion(options: ["The door is open", "The window is closed", "The light is on", "The fan is off"]),
-            QuizQuestion(options: ["I need help please", "Can you come here", "Will you wait for me", "May I go now"]),
+            QuizQuestion(options: ["I wake up early", "I go to bed late", "I eat breakfast now", "I take a shower first", "I get dressed quickly", "I brush my teeth"]),
+            QuizQuestion(options: ["He brushes his teeth", "She combs her hair", "They wash their hands", "We clean our room", "I make my bed", "You pack your bag"]),
+            QuizQuestion(options: ["I am getting dressed", "You are packing lunch", "He is tying shoes", "She is putting on coat", "We are leaving soon", "They are ready now"]),
+            QuizQuestion(options: ["The door is open", "The window is closed", "The light is on", "The fan is off", "The curtain is drawn", "The blinds are up"]),
+            QuizQuestion(options: ["I need help please", "Can you come here", "Will you wait for me", "May I go now", "Could you show me", "Should I start"]),
             
             // School & Learning
-            QuizQuestion(options: ["I study every day", "You read the book", "He does homework", "She takes notes"]),
-            QuizQuestion(options: ["The answer is correct", "The question is hard", "The test is easy", "The grade is good"]),
-            QuizQuestion(options: ["I raise my hand", "You listen carefully", "He asks a question", "She gives an answer"]),
-            QuizQuestion(options: ["We learn new things", "They practice math", "I write a story", "You draw a picture"]),
-            QuizQuestion(options: ["The pencil is sharp", "The eraser is pink", "The paper is white", "The crayon is blue"]),
+            QuizQuestion(options: ["I study every day", "You read the book", "He does homework", "She takes notes", "We practice writing", "They learn math"]),
+            QuizQuestion(options: ["The answer is correct", "The question is hard", "The test is easy", "The grade is good", "The quiz is short", "The exam is long"]),
+            QuizQuestion(options: ["I raise my hand", "You listen carefully", "He asks a question", "She gives an answer", "We pay attention", "They work together"]),
+            QuizQuestion(options: ["We learn new things", "They practice math", "I write a story", "You draw a picture", "He solves problems", "She reads aloud"]),
+            QuizQuestion(options: ["The pencil is sharp", "The eraser is pink", "The paper is white", "The crayon is blue", "The marker is red", "The pen is black"]),
             
             // Food & Eating
-            QuizQuestion(options: ["I am hungry now", "You are thirsty too", "He wants lunch", "She needs water"]),
-            QuizQuestion(options: ["The apple is red", "The banana is yellow", "The grape is purple", "The orange is round"]),
-            QuizQuestion(options: ["Breakfast is ready", "Lunch is served", "Dinner is cooking", "Snack is waiting"]),
-            QuizQuestion(options: ["I like pizza best", "You prefer pasta", "He loves burgers", "She enjoys salad"]),
-            QuizQuestion(options: ["The milk is cold", "The coffee is hot", "The juice is sweet", "The water is fresh"]),
+            QuizQuestion(options: ["I am hungry now", "You are thirsty too", "He wants lunch", "She needs water", "We want snacks", "They need dinner"]),
+            QuizQuestion(options: ["The apple is red", "The banana is yellow", "The grape is purple", "The orange is round", "The lemon is sour", "The strawberry is sweet"]),
+            QuizQuestion(options: ["Breakfast is ready", "Lunch is served", "Dinner is cooking", "Snack is waiting", "Dessert is coming", "Food is hot"]),
+            QuizQuestion(options: ["I like pizza best", "You prefer pasta", "He loves burgers", "She enjoys salad", "We want tacos", "They choose soup"]),
+            QuizQuestion(options: ["The milk is cold", "The coffee is hot", "The juice is sweet", "The water is fresh", "The tea is warm", "The soda is fizzy"]),
             
             // Weather & Seasons
-            QuizQuestion(options: ["It is raining outside", "It is snowing today", "It is sunny now", "It is windy here"]),
-            QuizQuestion(options: ["Spring brings flowers", "Summer is hot", "Fall has leaves", "Winter is cold"]),
-            QuizQuestion(options: ["The sky is blue", "The clouds are white", "The rainbow is colorful", "The sunset is beautiful"]),
-            QuizQuestion(options: ["I wear a jacket", "You need an umbrella", "He has mittens", "She brings boots"]),
-            QuizQuestion(options: ["It is very warm", "It is quite cool", "It is too hot", "It is really cold"]),
+            QuizQuestion(options: ["It is raining outside", "It is snowing today", "It is sunny now", "It is windy here", "It is cloudy there", "It is foggy morning"]),
+            QuizQuestion(options: ["Spring brings flowers", "Summer is hot", "Fall has leaves", "Winter is cold", "Autumn is colorful", "Spring is rainy"]),
+            QuizQuestion(options: ["The sky is blue", "The clouds are white", "The rainbow is colorful", "The sunset is beautiful", "The sunrise is bright", "The stars are pretty"]),
+            QuizQuestion(options: ["I wear a jacket", "You need an umbrella", "He has mittens", "She brings boots", "We grab coats", "They carry hats"]),
+            QuizQuestion(options: ["It is very warm", "It is quite cool", "It is too hot", "It is really cold", "It is super nice", "It is pretty mild"]),
             
             // Family & Friends
-            QuizQuestion(options: ["My mom is nice", "My dad is tall", "My sister is young", "My brother is funny"]),
-            QuizQuestion(options: ["I love my family", "You have good friends", "He helps others", "She cares a lot"]),
-            QuizQuestion(options: ["We play together", "They laugh a lot", "I share my toys", "You tell stories"]),
-            QuizQuestion(options: ["Grandma visits us", "Grandpa tells jokes", "Aunt brings gifts", "Uncle plays games"]),
-            QuizQuestion(options: ["The baby is cute", "The toddler is active", "The kid is smart", "The teen is helpful"]),
+            QuizQuestion(options: ["My mom is nice", "My dad is tall", "My sister is young", "My brother is funny", "My cousin is smart", "My friend is kind"]),
+            QuizQuestion(options: ["I love my family", "You have good friends", "He helps others", "She cares a lot", "We support each other", "They stay together"]),
+            QuizQuestion(options: ["We play together", "They laugh a lot", "I share my toys", "You tell stories", "He builds blocks", "She sings songs"]),
+            QuizQuestion(options: ["Grandma visits us", "Grandpa tells jokes", "Aunt brings gifts", "Uncle plays games", "Cousin comes over", "Nephew runs around"]),
+            QuizQuestion(options: ["The baby is cute", "The toddler is active", "The kid is smart", "The teen is helpful", "The child is happy", "The infant is small"]),
             
             // Feelings & Emotions
-            QuizQuestion(options: ["I feel happy today", "You look sad now", "He seems angry", "She appears worried"]),
-            QuizQuestion(options: ["I am excited", "You are nervous", "He is proud", "She is grateful"]),
-            QuizQuestion(options: ["That makes me smile", "This makes you laugh", "It makes him think", "That makes her wonder"]),
-            QuizQuestion(options: ["I am tired now", "You are wide awake", "He is sleepy", "She is energetic"]),
-            QuizQuestion(options: ["I feel better now", "You seem fine", "He looks great", "She appears well"]),
+            QuizQuestion(options: ["I feel happy today", "You look sad now", "He seems angry", "She appears worried", "We are excited", "They feel calm"]),
+            QuizQuestion(options: ["I am excited", "You are nervous", "He is proud", "She is grateful", "We are cheerful", "They are pleased"]),
+            QuizQuestion(options: ["That makes me smile", "This makes you laugh", "It makes him think", "That makes her wonder", "This makes us happy", "It makes them giggle"]),
+            QuizQuestion(options: ["I am tired now", "You are wide awake", "He is sleepy", "She is energetic", "We are rested", "They are alert"]),
+            QuizQuestion(options: ["I feel better now", "You seem fine", "He looks great", "She appears well", "We are healthy", "They feel good"]),
             
             // Colors & Descriptions
-            QuizQuestion(options: ["My favorite is blue", "Your choice is red", "His pick is green", "Her color is pink"]),
-            QuizQuestion(options: ["The ball is round", "The box is square", "The star is pointy", "The heart is curved"]),
-            QuizQuestion(options: ["This is very big", "That is quite small", "It is really tall", "They are so tiny"]),
-            QuizQuestion(options: ["The room is bright", "The hallway is dark", "The space is wide", "The path is narrow"]),
-            QuizQuestion(options: ["It feels soft", "It looks hard", "It seems rough", "It appears smooth"]),
+            QuizQuestion(options: ["My favorite is blue", "Your choice is red", "His pick is green", "Her color is pink", "Our choice is yellow", "Their favorite is purple"]),
+            QuizQuestion(options: ["The ball is round", "The box is square", "The star is pointy", "The heart is curved", "The circle is perfect", "The triangle is sharp"]),
+            QuizQuestion(options: ["This is very big", "That is quite small", "It is really tall", "They are so tiny", "These are huge", "Those are little"]),
+            QuizQuestion(options: ["The room is bright", "The hallway is dark", "The space is wide", "The path is narrow", "The area is open", "The corner is dim"]),
+            QuizQuestion(options: ["It feels soft", "It looks hard", "It seems rough", "It appears smooth", "It is bumpy", "It is silky"]),
             
             // Time & Schedule
-            QuizQuestion(options: ["It is morning time", "It is noon already", "It is evening now", "It is night soon"]),
-            QuizQuestion(options: ["Today is Monday", "Tomorrow is Tuesday", "Yesterday was Sunday", "The day is Friday"]),
-            QuizQuestion(options: ["I am early today", "You are on time", "He is running late", "She arrived first"]),
-            QuizQuestion(options: ["We meet at three", "They come at four", "I leave at five", "You return at six"]),
-            QuizQuestion(options: ["The show starts soon", "The class begins now", "The game ends later", "The event finishes early"]),
+            QuizQuestion(options: ["It is morning time", "It is noon already", "It is evening now", "It is night soon", "It is afternoon later", "It is midnight past"]),
+            QuizQuestion(options: ["Today is Monday", "Tomorrow is Tuesday", "Yesterday was Sunday", "The day is Friday", "Next is Wednesday", "Last was Thursday"]),
+            QuizQuestion(options: ["I am early today", "You are on time", "He is running late", "She arrived first", "We came early", "They were delayed"]),
+            QuizQuestion(options: ["We meet at three", "They come at four", "I leave at five", "You return at six", "He arrives at seven", "She departs at eight"]),
+            QuizQuestion(options: ["The show starts soon", "The class begins now", "The game ends later", "The event finishes early", "The movie plays next", "The concert opens tonight"]),
             
             // Actions & Movement
-            QuizQuestion(options: ["I can run fast", "You can jump high", "He can swim well", "She can dance beautifully"]),
-            QuizQuestion(options: ["We walk to school", "They ride the bus", "I take the train", "You drive the car"]),
-            QuizQuestion(options: ["He climbs the tree", "She crosses the street", "I go up stairs", "You come down hill"]),
-            QuizQuestion(options: ["Let's go outside", "Let's stay inside", "Let's move forward", "Let's step back"]),
-            QuizQuestion(options: ["I stand up tall", "You sit down here", "He lies down there", "She kneels on floor"]),
+            QuizQuestion(options: ["I can run fast", "You can jump high", "He can swim well", "She can dance beautifully", "We can skip quickly", "They can hop far"]),
+            QuizQuestion(options: ["We walk to school", "They ride the bus", "I take the train", "You drive the car", "He bikes to work", "She skates to park"]),
+            QuizQuestion(options: ["He climbs the tree", "She crosses the street", "I go up stairs", "You come down hill", "We walk over bridge", "They run through field"]),
+            QuizQuestion(options: ["Let's go outside", "Let's stay inside", "Let's move forward", "Let's step back", "Let's turn around", "Let's walk ahead"]),
+            QuizQuestion(options: ["I stand up tall", "You sit down here", "He lies down there", "She kneels on floor", "We bend over low", "They crouch down now"]),
             
             // Places & Locations
-            QuizQuestion(options: ["I live in town", "You stay in city", "He works in office", "She studies in library"]),
-            QuizQuestion(options: ["We meet at park", "They play at playground", "I shop at store", "You eat at restaurant"]),
-            QuizQuestion(options: ["The book is here", "The pen is there", "The bag is nearby", "The coat is far"]),
-            QuizQuestion(options: ["Go to the left", "Turn to the right", "Look straight ahead", "Step to the side"]),
-            QuizQuestion(options: ["It is upstairs", "It is downstairs", "It is outside", "It is inside"]),
+            QuizQuestion(options: ["I live in town", "You stay in city", "He works in office", "She studies in library", "We meet in school", "They play in gym"]),
+            QuizQuestion(options: ["We meet at park", "They play at playground", "I shop at store", "You eat at restaurant", "He waits at station", "She reads at library"]),
+            QuizQuestion(options: ["The book is here", "The pen is there", "The bag is nearby", "The coat is far", "The toy is close", "The ball is away"]),
+            QuizQuestion(options: ["Go to the left", "Turn to the right", "Look straight ahead", "Step to the side", "Move to center", "Walk to corner"]),
+            QuizQuestion(options: ["It is upstairs", "It is downstairs", "It is outside", "It is inside", "It is nearby", "It is far away"]),
             
             // Animals & Pets
-            QuizQuestion(options: ["I have a dog", "You own a cat", "He keeps fish", "She has hamsters"]),
-            QuizQuestion(options: ["The puppy is playful", "The kitten is soft", "The bunny is fluffy", "The bird is colorful"]),
-            QuizQuestion(options: ["Dogs like to bark", "Cats like to purr", "Birds like to sing", "Fish like to swim"]),
-            QuizQuestion(options: ["My pet is friendly", "Your pet is quiet", "His pet is active", "Her pet is gentle"]),
-            QuizQuestion(options: ["The horse is fast", "The turtle is slow", "The rabbit is quick", "The snail is tiny"]),
+            QuizQuestion(options: ["I have a dog", "You own a cat", "He keeps fish", "She has hamsters", "We raise chickens", "They feed rabbits"]),
+            QuizQuestion(options: ["The puppy is playful", "The kitten is soft", "The bunny is fluffy", "The bird is colorful", "The hamster is tiny", "The guinea pig is cute"]),
+            QuizQuestion(options: ["Dogs like to bark", "Cats like to purr", "Birds like to sing", "Fish like to swim", "Rabbits like to hop", "Hamsters like to run"]),
+            QuizQuestion(options: ["My pet is friendly", "Your pet is quiet", "His pet is active", "Her pet is gentle", "Our pet is playful", "Their pet is calm"]),
+            QuizQuestion(options: ["The horse is fast", "The turtle is slow", "The rabbit is quick", "The snail is tiny", "The cheetah is speedy", "The sloth is lazy"]),
             
             // Activities & Hobbies
-            QuizQuestion(options: ["I like to read", "You love to draw", "He enjoys sports", "She prefers music"]),
-            QuizQuestion(options: ["We play soccer", "They play basketball", "I play tennis", "You play baseball"]),
-            QuizQuestion(options: ["I collect stamps", "You build models", "He paints pictures", "She makes crafts"]),
-            QuizQuestion(options: ["Reading is fun", "Writing is creative", "Drawing is relaxing", "Singing is joyful"]),
-            QuizQuestion(options: ["I practice piano", "You play guitar", "He learns drums", "She studies violin"]),
+            QuizQuestion(options: ["I like to read", "You love to draw", "He enjoys sports", "She prefers music", "We practice dance", "They watch movies"]),
+            QuizQuestion(options: ["We play soccer", "They play basketball", "I play tennis", "You play baseball", "He plays hockey", "She plays volleyball"]),
+            QuizQuestion(options: ["I collect stamps", "You build models", "He paints pictures", "She makes crafts", "We create art", "They design posters"]),
+            QuizQuestion(options: ["Reading is fun", "Writing is creative", "Drawing is relaxing", "Singing is joyful", "Dancing is exciting", "Playing is enjoyable"]),
+            QuizQuestion(options: ["I practice piano", "You play guitar", "He learns drums", "She studies violin", "We try flute", "They practice trumpet"]),
             
             // Numbers & Counting
-            QuizQuestion(options: ["I have one apple", "You have two oranges", "He has three bananas", "She has four grapes"]),
-            QuizQuestion(options: ["There are five birds", "There are six dogs", "There are seven cats", "There are eight fish"]),
-            QuizQuestion(options: ["I count to ten", "You add the numbers", "He solves the problem", "She finds the answer"]),
-            QuizQuestion(options: ["This costs five dollars", "That is ten cents", "It needs twenty coins", "They want fifty bills"]),
-            QuizQuestion(options: ["The first one wins", "The second place gets prize", "The third runner finishes", "The last person waits"]),
+            QuizQuestion(options: ["I have one apple", "You have two oranges", "He has three bananas", "She has four grapes", "We have five pears", "They have six peaches"]),
+            QuizQuestion(options: ["There are five birds", "There are six dogs", "There are seven cats", "There are eight fish", "There are nine frogs", "There are ten bees"]),
+            QuizQuestion(options: ["I count to ten", "You add the numbers", "He solves the problem", "She finds the answer", "We multiply values", "They subtract totals"]),
+            QuizQuestion(options: ["This costs five dollars", "That is ten cents", "It needs twenty coins", "They want fifty bills", "We have thirty pennies", "You need forty quarters"]),
+            QuizQuestion(options: ["The first one wins", "The second place gets prize", "The third runner finishes", "The last person waits", "The fourth place tries", "The middle one rests"]),
             
             // Health & Body
-            QuizQuestion(options: ["I feel sick today", "You look healthy", "He seems fine", "She feels great"]),
-            QuizQuestion(options: ["My head hurts", "Your arm is sore", "His leg is tired", "Her back is strong"]),
-            QuizQuestion(options: ["I wash my face", "You brush your hair", "He clips his nails", "She cleans her ears"]),
-            QuizQuestion(options: ["Exercise is good", "Sleep is important", "Water is healthy", "Vegetables are nutritious"]),
-            QuizQuestion(options: ["I take medicine", "You rest in bed", "He drinks soup", "She feels better"]),
+            QuizQuestion(options: ["I feel sick today", "You look healthy", "He seems fine", "She feels great", "We are well", "They appear strong"]),
+            QuizQuestion(options: ["My head hurts", "Your arm is sore", "His leg is tired", "Her back is strong", "Our feet ache", "Their hands are clean"]),
+            QuizQuestion(options: ["I wash my face", "You brush your hair", "He clips his nails", "She cleans her ears", "We dry our hands", "They comb their hair"]),
+            QuizQuestion(options: ["Exercise is good", "Sleep is important", "Water is healthy", "Vegetables are nutritious", "Fruit is delicious", "Walking is helpful"]),
+            QuizQuestion(options: ["I take medicine", "You rest in bed", "He drinks soup", "She feels better", "We eat well", "They stay warm"]),
             
             // Technology & Devices
-            QuizQuestion(options: ["I use the computer", "You check the phone", "He watches the tablet", "She types on keyboard"]),
-            QuizQuestion(options: ["The screen is bright", "The battery is low", "The volume is high", "The signal is weak"]),
-            QuizQuestion(options: ["Turn it on now", "Turn it off please", "Charge it up", "Plug it in"]),
-            QuizQuestion(options: ["I send a message", "You make a call", "He takes a picture", "She records a video"]),
-            QuizQuestion(options: ["The app is fun", "The game is hard", "The video is long", "The song is short"])
+            QuizQuestion(options: ["I use the computer", "You check the phone", "He watches the tablet", "She types on keyboard", "We browse online", "They play games"]),
+            QuizQuestion(options: ["The screen is bright", "The battery is low", "The volume is high", "The signal is weak", "The connection is strong", "The power is off"]),
+            QuizQuestion(options: ["Turn it on now", "Turn it off please", "Charge it up", "Plug it in", "Switch it over", "Power it down"]),
+            QuizQuestion(options: ["I send a message", "You make a call", "He takes a picture", "She records a video", "We share photos", "They watch clips"]),
+            QuizQuestion(options: ["The app is fun", "The game is hard", "The video is long", "The song is short", "The movie is good", "The show is new"])
         ]
 
 let animalItems: [String] = [
