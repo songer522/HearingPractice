@@ -51,6 +51,10 @@ struct RandomAudioExerciseView: View {
     
     // State to control settings sheet
     @State private var showSettings = false
+    @State private var aiPackQuestions: [QuizQuestion] = []
+    @State private var aiPackTitle = "AI Topic Pack"
+    @State private var usingAIPack = false
+    @State private var aiPackRevision = 0
     
     // Dynamic scaling based on screen size (both width and height)
     private func scaleFactor(for size: CGSize) -> CGFloat {
@@ -240,7 +244,7 @@ struct RandomAudioExerciseView: View {
             }
             .animation(.easeInOut, value: backgroundColor)
             }
-            .navigationTitle(selectedCategory.rawValue)
+            .navigationTitle(usingAIPack ? aiPackTitle : selectedCategory.rawValue)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -262,7 +266,7 @@ struct RandomAudioExerciseView: View {
                 }
             }
             .sheet(isPresented: $showSettings) {
-                RandomQuizSettingsView(selectedCategory: $selectedCategory, numberOfOptions: $numberOfOptions, speechSpeed: $speechSpeed, numberOfQuestions: $numberOfQuestions, environment: $environment, resultsManager: resultsManager)
+                RandomQuizSettingsView(selectedCategory: $selectedCategory, numberOfOptions: $numberOfOptions, speechSpeed: $speechSpeed, numberOfQuestions: $numberOfQuestions, environment: $environment, resultsManager: resultsManager, aiPackQuestions: $aiPackQuestions, aiPackTitle: $aiPackTitle, usingAIPack: $usingAIPack, aiPackRevision: $aiPackRevision)
                     .presentationDetents([.large])
                     .presentationBackgroundInteraction(.disabled)
             }
@@ -287,7 +291,16 @@ struct RandomAudioExerciseView: View {
                 .presentationDragIndicator(.visible)
             }
             .onChange(of: selectedCategory) { _ in
+                usingAIPack = false
                 resetQuiz()
+            }
+            .onChange(of: usingAIPack) { isUsingAIPack in
+                if isUsingAIPack {
+                    restartAIPack()
+                }
+            }
+            .onChange(of: aiPackRevision) { _ in
+                if usingAIPack { restartAIPack() }
             }
             .onChange(of: numberOfOptions) { _ in
                 resetQuiz()
@@ -403,7 +416,7 @@ struct RandomAudioExerciseView: View {
 
     func playPhrase(from question: QuizQuestion) {
         if lastPlayedPhrase == nil {
-            lastPlayedPhrase = question.options.randomElement()
+            lastPlayedPhrase = question.correctAnswer ?? question.options.randomElement()
         }
         if let phrase = lastPlayedPhrase {
             // Start background noise if environment is set to background noise
@@ -426,7 +439,7 @@ struct RandomAudioExerciseView: View {
     func checkAnswer(for question: QuizQuestion, selectedOption: String) {
         // Ensure we have a correct answer set (in case user didn't play the phrase)
         if lastPlayedPhrase == nil {
-            lastPlayedPhrase = question.options.randomElement()
+            lastPlayedPhrase = question.correctAnswer ?? question.options.randomElement()
         }
         
         if selectedOption == lastPlayedPhrase {
@@ -471,6 +484,16 @@ struct RandomAudioExerciseView: View {
         isAnswerLocked = false
         backgroundColor = Color(UIColor.systemBackground)
         loadQuestions()
+    }
+
+    private func restartAIPack() {
+        currentQuestionIndex = 0
+        score = 0
+        lastPlayedPhrase = nil
+        correctAnswer = nil
+        isAnswerLocked = false
+        backgroundColor = Color(UIColor.systemBackground)
+        questions = aiPackQuestions
     }
     
     func saveQuizResult() {

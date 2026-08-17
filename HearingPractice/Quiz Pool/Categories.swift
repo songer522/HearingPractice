@@ -543,4 +543,3 @@ let natureAndWeather: [String] = [
 ]
 
 
-
