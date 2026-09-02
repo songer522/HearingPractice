@@ -6,10 +6,11 @@ Cochleo speaks a word or phrase out loud and asks you to pick what you heard fro
 look-alike/sound-alike choices. Everything — speech, background noise, scoring, and even
 AI-generated topic packs — runs entirely on the device. No account, no network, no analytics.
 
-<p>
-  <img src="Cochleo%20screenshots/Screenshot%202026-02-12%20at%2010.12.25%20PM.png" width="260" />
-  <img src="Cochleo%20screenshots/Screenshot%202026-02-12%20at%2010.03.52%20PM.png" width="260" />
-</p>
+| Practice | Instant feedback | Settings | History |
+| --- | --- | --- | --- |
+| ![Quiz screen](screenshots/iphone-quiz.png) | ![Wrong answer sheet](screenshots/iphone-feedback.png) | ![Settings](screenshots/iphone-settings.png) | ![Quiz results](screenshots/iphone-results.png) |
+
+The same screens on iPad: [practice](screenshots/ipad-quiz.png) · [feedback](screenshots/ipad-feedback.png) · [settings](screenshots/ipad-settings.png) · [history](screenshots/ipad-results.png).
 
 ## How it works
 
