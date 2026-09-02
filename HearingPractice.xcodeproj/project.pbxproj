@@ -15,7 +15,6 @@
 		FC4393FA2C31056700860D99 /* HearingPracticeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393F92C31056700860D99 /* HearingPracticeUITests.swift */; };
 		FC4393FC2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4393FB2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift */; };
 		FC43940B2C3109C400860D99 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43940A2C3109BF00860D99 /* AudioPlayer.swift */; };
-		FC43940D2C310A9900860D99 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43940C2C310A9900860D99 /* Item.swift */; };
 		FC43941F2C3269D000860D99 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC43941E2C3269CA00860D99 /* SplashScreenView.swift */; };
 		FC5FBD292F3C3F86006A5356 /* RandomQuizSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FBD282F3C3F86006A5356 /* RandomQuizSettingsView.swift */; };
 		FC5FBD2B2F3C5956006A5356 /* QuizResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5FBD2A2F3C5956006A5356 /* QuizResult.swift */; };
@@ -58,7 +57,6 @@
 		FC4393F92C31056700860D99 /* HearingPracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearingPracticeUITests.swift; sourceTree = "<group>"; };
 		FC4393FB2C31056700860D99 /* HearingPracticeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearingPracticeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FC43940A2C3109BF00860D99 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		FC43940C2C310A9900860D99 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FC43941E2C3269CA00860D99 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		FC5FBD282F3C3F86006A5356 /* RandomQuizSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomQuizSettingsView.swift; sourceTree = "<group>"; };
 		FC5FBD2A2F3C5956006A5356 /* QuizResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResult.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 				FC43941E2C3269CA00860D99 /* SplashScreenView.swift */,
 				FC4393DD2C31056600860D99 /* ContentView.swift */,
 				FC43940A2C3109BF00860D99 /* AudioPlayer.swift */,
-				FC43940C2C310A9900860D99 /* Item.swift */,
 				FCCB01472C3E478A00E2CEDA /* Quiz Pool */,
 				FCCB01402C3E37A800E2CEDA /* RandomQuiz */,
 				FC4393E12C31056700860D99 /* Assets.xcassets */,
@@ -315,7 +312,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC43940D2C310A9900860D99 /* Item.swift in Sources */,
 				FC4393DE2C31056600860D99 /* ContentView.swift in Sources */,
 				FC5FBD292F3C3F86006A5356 /* RandomQuizSettingsView.swift in Sources */,
 				FCCB01492C3E479D00E2CEDA /* Categories.swift in Sources */,

@@ -1,90 +1,109 @@
-# Privacy Policy for Hearing Practice
+# Cochleo (Hearing Practice)
 
-**Last Updated: February 12, 2026**
+An iOS listening-practice app for cochlear implant users, built with SwiftUI.
 
-## Introduction
+Cochleo speaks a word or phrase out loud and asks you to pick what you heard from a set of
+look-alike/sound-alike choices. Everything — speech, background noise, scoring, and even
+AI-generated topic packs — runs entirely on the device. No account, no network, no analytics.
 
-Hearing Practice ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how our mobile application ("App") handles information.
+<p>
+  <img src="Cochleo%20screenshots/Screenshot%202026-02-12%20at%2010.12.25%20PM.png" width="260" />
+  <img src="Cochleo%20screenshots/Screenshot%202026-02-12%20at%2010.03.52%20PM.png" width="260" />
+</p>
 
-## Information We Collect
+## How it works
 
-**We do not collect, store, or transmit any personal information.**
+1. Tap **Play Phrase** — the app speaks one of the on-screen options using `AVSpeechSynthesizer`.
+2. Tap the option you think you heard.
+3. Correct answers advance immediately; a wrong answer opens a feedback sheet that reveals and
+   replays the right one.
+4. At the end of the quiz you get a score, and the result is saved to your local history.
 
-### Data Stored Locally on Your Device
+## Features
 
-The App stores the following data locally on your device only:
+**Practice categories** (`HearingPractice/Quiz Pool/Categories.swift`)
 
-- **Quiz Results**: Your quiz scores, accuracy percentages, and completion dates
-- **App Preferences**: Your selected quiz settings (category, difficulty, speech speed, number of questions, environment)
-- **Tutorial Status**: A flag indicating whether you've seen the welcome tutorial for the current app version
+- Phoneme drills: *Initial Consonants*, *Medial Vowels*, *Final Consonants* — each quiz picks one
+  contrast group (e.g. all /b/ words, all short-*a* words) so options differ by a single sound.
+- Vocabulary sets: *Food*, *Animals*, *Disney*, *Colors & Shapes*, *Action Words*, *Places*,
+  *Everyday Objects*, *Nature & Weather*.
+- *Phrases* — full sentences grouped into sets of minimally different alternatives.
 
-All this data remains on your device and is never transmitted to our servers or any third parties.
+**Difficulty controls**
 
-## In-App Purchases
+| Setting | Options |
+| --- | --- |
+| Number of options | 2, 3, 4, 5, 6 |
+| Number of questions | 10, 25, 50 |
+| Speech speed | Slow (0.35), Normal (0.45), Fast (0.55) |
+| Environment | Quiet, or Background Noise |
 
-The App offers optional in-app purchases (tips) to support development. These transactions are processed entirely by Apple through the App Store. We do not collect or have access to your payment information. Apple's privacy policy governs how your payment information is handled.
+Background Noise mode synthesizes a white-noise WAV in memory and loops it under the speech to
+simulate a noisy room — see `AudioPlayer.generateWhiteNoise()`.
 
-## Speech Synthesis
+**AI Topic Packs** (iOS 26+, Apple Intelligence required)
 
-The App uses Apple's built-in text-to-speech technology (AVSpeechSynthesizer) to read phrases aloud. This processing happens entirely on your device. No audio data is recorded, transmitted, or stored.
+Type any topic and the on-device Foundation Models framework (`LanguageModelSession` +
+`@Generable`) generates ten four-option listening sets about it, previewed before use. The settings
+screen surfaces model availability (ready / Apple Intelligence off / device not eligible / still
+downloading). No prompt or response leaves the device.
 
-## Background Noise Generation
+**Results history**
 
-When you select the "Background Noise" environment option, the App generates white noise locally on your device to simulate real-world listening conditions. No audio is recorded or transmitted.
+Every finished quiz is stored as a `QuizResult` (date, category, options, questions, correct rate,
+speed, environment), JSON-encoded into `UserDefaults`. Viewable, deletable, and clearable from
+Settings → View Quiz Results.
 
-## Data Deletion
+**Tip jar**
 
-Since all data is stored locally on your device:
+Four optional consumable IAPs to support development, defined in `Configuration.storekit` for
+local StoreKit testing.
 
-- To delete your quiz results and preferences, simply delete the App from your device
-- Reinstalling the App will start fresh with no previous data
+## Project layout
 
-## Children's Privacy
+```
+HearingPractice/
+├── HearingPracticeApp.swift        App entry; SwiftData ModelContainer
+├── SplashScreenView.swift          Launch animation
+├── ContentView.swift               Hosts the quiz; shows the tutorial once per app version
+├── WelcomeTutorialView.swift       First-run walkthrough
+├── AudioPlayer.swift               AVSpeechSynthesizer + generated white noise
+├── Quiz Pool/
+│   └── Categories.swift            Category enum and all word/phrase pools
+└── RandomQuiz/
+    ├── RandomAudioExerciseView.swift   Main quiz screen, question generation, scoring
+    ├── RandomQuizSettingsView.swift    Settings, AI pack creator, mail feedback
+    ├── QuestionConfigView.swift        Pre-quiz configuration
+    ├── ResultsView.swift               Saved-result history
+    ├── QuizQuestion.swift / QuizResult.swift
+    └── TipJarView.swift                StoreKit 2 tips
+```
 
-The App does not knowingly collect any information from children. The App is designed for cochlear implant users of all ages and does not require any personal information to function.
+## Building
 
-## Third-Party Services
+Requirements: Xcode with the iOS 26.5 SDK; iPhone/iPad running iOS 26.5 or later.
 
-The App does not use any third-party analytics, advertising, or tracking services.
+```sh
+open HearingPractice.xcodeproj
+# or
+xcodebuild -scheme HearingPractice -destination 'platform=iOS Simulator,name=iPhone 17' build
+```
 
-### Apple Services Used:
-- **StoreKit**: For processing in-app purchases (governed by Apple's privacy policy)
-- **AVFoundation**: For local audio playback and speech synthesis
+- Bundle identifier: `com.yangsong.HearingPractice`
+- Display name: **Cochleo** · Version 1.1 (3)
+- Swift 5.0, iPhone + iPad (`TARGETED_DEVICE_FAMILY = 1,2`)
 
-## Changes to This Privacy Policy
+To exercise the tip jar in the simulator, select `Configuration.storekit` as the scheme's StoreKit
+configuration file. AI Topic Packs need a real Apple Intelligence–capable device with the feature
+enabled; the simulator reports the model as unavailable.
 
-We may update this Privacy Policy from time to time. Any changes will be reflected by updating the "Last Updated" date at the top of this policy. Continued use of the App after changes constitutes acceptance of the updated policy.
+## Privacy
 
-## Your Rights
+No data is collected or transmitted. Quiz results, preferences, and the tutorial flag live in
+`UserDefaults` on the device and are removed when the app is deleted. See
+[PRIVACY_POLICY.md](PRIVACY_POLICY.md).
 
-Since we don't collect any personal data:
+## Feedback
 
-- There is no data to access, correct, or delete from our servers
-- All your data remains under your control on your device
-- You can delete all App data by deleting the App from your device
-
-## Contact Us
-
-If you have any questions about this Privacy Policy or the App, please contact us at:
-
-**Email**: rewind.feedback@gmail.com
-
-## California Privacy Rights
-
-Under California Civil Code Section 1798.83, California residents are entitled to ask for information about how we share certain categories of personal information with third parties. Since we do not collect or share any personal information, this provision does not apply.
-
-## GDPR Compliance (European Users)
-
-For users in the European Economic Area (EEA):
-
-- We do not collect personal data as defined by GDPR
-- No data processing occurs that would require consent
-- No data is transferred outside your device
-
-## Consent
-
-By using the App, you consent to this Privacy Policy.
-
----
-
-**Note**: This privacy policy reflects the current functionality of Hearing Practice. We are committed to transparency and will update this policy if the App's data practices change in future versions.
+In-app: Settings → Give Feedback (opens Mail with app/device details prefilled), or email
+rewind.feedback@gmail.com.
